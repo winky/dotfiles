@@ -82,9 +82,8 @@ filetype off "ファイルタイプ関連を無効化
 
 if has('vim_starting')
 	 set runtimepath+=~/.vim/bundle/neobundle.vim/
+	 call neobundle#rc(expand('~/.vim/bundle'))
 endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
 
 "gitを使ったプラグインマネージャー
 NeoBundleFetch 'Shougo/neobundle.vim'
