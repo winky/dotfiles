@@ -1,6 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/winky/.vim'
-let g:netrw_dirhist_2='/Users/winky/.oh-my-zsh'
-let g:netrw_dirhist_3='/Users/winky/.ssh'
-let g:netrw_dirhist_4='/Users/winky/Desktop/git/test'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/winky/chef-repo/site-cookbooks/mysql/files/default'
+let g:netrw_dirhist_2='/Users/winky/chef-repo/site-cookbooks/mysql/attributes'
