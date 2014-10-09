@@ -14,6 +14,7 @@ alias vi='/usr/local/bin/vim'
 alias la='ls -a'
 alias ll='ls -l'
 alias rmf='rm -rf'
+alias sbl='/Applications/Sublime\ Text\ 3.app/Contents/SharedSupport/bin/subl'
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit
