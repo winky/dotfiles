@@ -1,0 +1,3 @@
+[submodule "XVim"]
+	path = XVim
+	url = https://github.com/XVimProject/XVim.git
