@@ -14,3 +14,4 @@ nnoremap : ;
 "uniteプラグイン
 nmap <Space>u [unite]
 nnoremap <silent>[unite]y :<C-u>Unite yankround<CR>
+nnoremap ` /

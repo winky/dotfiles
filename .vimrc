@@ -77,6 +77,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+nnoremap ` /
 
 filetype off "ファイルタイプ関連を無効化
 
