@@ -14,8 +14,3 @@ nnoremap : ;
 "uniteプラグイン
 nmap <Space>u [unite]
 nnoremap <silent>[unite]y :<C-u>Unite yankround<CR>
-"行移動入れ替え
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
