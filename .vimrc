@@ -102,6 +102,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 "SQL整形のために必要なプラグイン
 NeoBundle 'Align'
 "PHPシンタックスハイライト
@@ -119,6 +120,18 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+
+"------------------------------------------------------
+"Uinte.vimの設定
+"------------------------------------------------------
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
 
 source $HOME/dotfiles/.vimrc.neocomplete
 source $HOME/dotfiles/.vimrc.colorconfig

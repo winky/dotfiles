@@ -3,6 +3,7 @@ ctrlp.vim
 errormarker.vim
 neobundle.vim
 neocomplete.vim
+neomru.vim
 neosnippet
 php.vim
 unite.vim
