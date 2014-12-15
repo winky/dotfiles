@@ -3,6 +3,10 @@
     'userId': 'ad18539b-dafe-838d-307c-e7aafaee56c5'
   'welcome':
     'showOnStartup': false
-  'core': {}
+  'core':
+    'themes': [
+      'atom-dark-ui'
+      'monokai'
+    ]
   'editor':
     'invisibles': {}
