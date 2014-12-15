@@ -108,6 +108,8 @@ NeoBundle 'Align'
 "PHPシンタックスハイライト
 NeoBundle 'shawncplus/php.vim'
 
+NeoBundle 'scrooloose/nerdtree'
+
 filetype plugin on
 filetype indent on
 
