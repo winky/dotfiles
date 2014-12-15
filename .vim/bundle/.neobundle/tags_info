@@ -5,6 +5,7 @@ neobundle.vim
 neocomplete.vim
 neomru.vim
 neosnippet
+nerdtree
 php.vim
 unite.vim
 vimproc
