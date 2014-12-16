@@ -18,7 +18,7 @@ alias vagini='vagrant init chef-CentOS6.5'
 alias vagu='vagrant up'
 alias vagh='vagrant halt'
 alias sbl='/Applications/Sublime\ Text\ 3.app/Contents/SharedSupport/bin/subl'
-
+alias atm='/Applications/Atom.app/Contents/MacOS/Atom'
 fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit
 

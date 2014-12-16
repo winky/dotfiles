@@ -77,7 +77,12 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+"検索機能
 nnoremap ` /
+"自動的に閉じ括弧を入力
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
 
 filetype off "ファイルタイプ関連を無効化
 
