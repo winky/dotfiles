@@ -7,7 +7,7 @@ ZSH_THEME="dpoggi"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
 
 # Setting alias
 alias vi='/usr/local/bin/vim'
