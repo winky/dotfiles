@@ -1,0 +1,140 @@
+*neossh.txt*	SSH interface for Vim plugins
+
+Version: 1.0
+Author : Shougo <Shougo.Matsu@gmail.com>
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*neossh-contents*
+
+Usage			|neossh-usage|
+Install			|neossh-install|
+Interface		|neossh-interface|
+  Variables		  |neossh-variables|
+Configulation Examples	|neossh-examples|
+FAQ			|neossh-faq|
+
+==============================================================================
+USAGE						*neossh-usage*
+
+	This source nominates files over ssh.
+	
+	Note: To avoid password input every time, we recommend you to prepare
+	the ssh key or to write "ControlMaster auto" in ~/.ssh/config. Please
+	refer to |neossh-examples| section.
+
+		Source arguments:
+		1. //HOSTNAME:port/path
+>
+	:Unite ssh://HOSTNAME:port/file_path
+	:Unite ssh://HOSTNAME/file_path
+	:Unite ssh://HOSTNAME/directory_path/
+	:Unite ssh://HOSTNAME//usr/bin/
+<
+	Note: To open directory, you must add last "/".
+	Note: To open absolute path, you must use "ssh://HOSTNAME//" instead of
+	"ssh://HOSTNAME/".
+
+==============================================================================
+INSTALL						*neossh-install*
+
+Requirements: unite.vim and vimproc and ssh commands.
+Recommended: vimfiler.
+
+https://github.com/Shougo/unite.vim
+https://github.com/Shougo/vimproc
+https://github.com/Shougo/vimfiler
+
+==============================================================================
+INTERFACE					*neossh-interface*
+
+------------------------------------------------------------------------------
+VARIABLES 					*neossh-variables*
+
+g:neossh#delete_file_command			 *g:neossh#delete_file_command*
+
+					*g:neossh#delete_directory_command*
+g:neossh#delete_directory_command
+		It controls vimfiler (and kind file_ssh) use delete command.
+		
+		It substitutes special arguments:
+		$srcs : src files
+		$dest : destination directory
+		
+		Default value is "rm -r $srcs".
+
+g:neossh#copy_file_command			*g:neossh#copy_file_command*
+		It controls vimfiler (and kind file_ssh) use copy files
+		command.
+		If it is empty, this system can't support copy file.
+		
+		It substitutes special arguments:
+		$srcs : src files
+		$dest : destination directory
+		
+		Default value is "scp -P PORT -r -q $srcs $dest".
+
+					*g:neossh#copy_directory_command*
+g:neossh#copy_directory_command
+		It controls vimfiler (and kind file_ssh) use copy directories
+		command.
+		If it is empty, this system can't support copying directories.
+		
+		It substitutes special arguments:
+		$srcs : src files
+		$dest : destination directory
+		
+		Default value is "scp -P PORT -q $srcs $dest".
+
+==============================================================================
+EXAMPLES					*neossh-examples*
+>
+	# in ~/.ssh/config
+	Host *
+		ControlMaster auto
+		ControlPath ~/.ssh/master-%r@%h:%p
+		ControlPersist yes
+<
+==============================================================================
+FAQ						*neossh-faq*
+
+Q: I want to create new file in remote server.
+
+A:
+>
+	:VimFiler ssh://server:22/dir/newfile
+<
+
+Q: I want to use proxy server to connect the server.
+
+A: You must write the settings in ~/.ssh/config.
+
+Note: This setting is slow. And may conflicts "ControlPersist" setting in
+~/.ssh/config.
+Note: To use "-W" option, OpenSSH version must be "5.4" or above.
+>
+	# in ~/.ssh/config
+	Host {server name}
+		ProxyCommand ssh {proxy server name} -W %h:%p
+		#ProxyCommand ssh {proxy server name} nc %h %p
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:
