@@ -91,7 +91,7 @@ if has('vim_starting')
 	if &compatible
 	 set nocompatible   " Be iMproved0 endif
 	endif
-	 set runtimepath+=~/.vim/bundle/neobundle.vim/
+	 set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('$HOME/.vim/bundle/'))
