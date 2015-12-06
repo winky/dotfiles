@@ -71,7 +71,7 @@
 	<key>HotkeyCode</key>
 	<integer>49</integer>
 	<key>HotkeyModifiers</key>
-	<integer>524576</integer>
+	<integer>262401</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>
@@ -86,6 +86,8 @@
 	<false/>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles</string>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -110,11 +112,9 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>282 276 924 485 0 0 1440 877 </string>
+	<string>269 110 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 11 1438 866 0 0 1440 877 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>720 292 490 586 0 0 1440 878 </string>
+	<string>0 4 1438 768 0 0 1280 777 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1582,6 +1582,12 @@
 			<string>/Users/winky</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
+	<key>NoSyncTimeOfLastPromo</key>
+	<real>459427416.22515398</real>
+	<key>NoSyncTimeOfLastPromoDownload</key>
+	<real>463160449.55948699</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1648,7 +1654,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-12-15T02:03:39Z</date>
+	<date>2015-09-05T15:40:48Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -4053,6 +4059,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.0.0.20141103</string>
+	<string>2.1.1</string>
 </dict>
 </plist>
