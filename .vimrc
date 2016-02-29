@@ -100,13 +100,27 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "------------------------------------------------------
 "github（プラグイン）
 "------------------------------------------------------
-"make時のエラーマーカー表示
+" NERDTreeを設定
+NeoBundle 'scrooloose/nerdtree'
+" make時のエラーマーカー表示
 NeoBundle 'errormarker.vim'
-"キャッシュを備えた自動補完機能
+" Vimステータスライン
+NeoBundle 'itchyny/lightline.vim'
+" キャッシュを備えた自動補完機能
 NeoBundle 'Shougo/neocomplete.vim'
-""コードスニペット
+" コードスニペット
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+" インデントに色を付けて見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" 行末の半角スペースを可視化
+NeoBundle 'bronson/vim-trailing-whitespace'
+" 括弧自動補完
+NeoBundle 'Townk/vim-autoclose'
+" molokai カラースキーム
+NeoBundle 'tomasr/molokai'
+" 囲いを簡易化
+NeoBundle 'tpope/vim-surround'
 
 filetype plugin on
 filetype indent on
@@ -123,13 +137,39 @@ NeoBundle 'Shougo/vimproc', {
 call neobundle#end()
 
 "-----------------------------------------------------
-"Uinte.vimの設定
+"NERDTree.vimの設定
 "------------------------------------------------------
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
+" 隠しファイルをデフォルトで表示させる
+let NERDTreeShowHidden = 1
+
+" デフォルトでツリーを表示させる
+autocmd VimEnter * execute 'NERDTree'
+
+"-----------------------------------------------------
+"vim-indent-guidesの設定
+"------------------------------------------------------
+" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+let g:indent_guides_enable_on_vim_startup = 1
+" 自動カラー無効
+let g:indent_guides_auto_colors=0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+
+" http://inari.hatenablog.com/entry/2014/05/05/231307
+"-----------------------------------------------------
+"全角スペースの表示
+"------------------------------------------------------
+function! ZenkakuSpace()
+   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
