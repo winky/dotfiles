@@ -40,6 +40,3 @@ alias vg='vagrant'
 alias ng='nginx'
 alias fxg='find ./ | xargs grep -n --color=always '
 alias gti='git'
-
-# composer
-export PATH="$HOME/.composer/vendor/bin:$PATH"
