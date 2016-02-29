@@ -103,70 +103,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "make時のエラーマーカー表示
 NeoBundle 'errormarker.vim'
 "キャッシュを備えた自動補完機能
-"NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 ""コードスニペット
 NeoBundle 'Shougo/neosnippet'
-"ファイルプラグイン
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-"SQL整形のために必要なプラグイン
-NeoBundle 'Align'
-"PHPシンタックスハイライト
-NeoBundle 'shawncplus/php.vim'
-
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/unite-ssh.vim'
-NeoBundle 'Shougo/unite-outline.git'
-NeoBundle 'Shougo/vim-vsc.git'
-NeoBundle 'Shougo/echodoc.git'
-NeoBundle 'Shougo/unite.vim.git'
-NeoBundle 'Shougo/unite-ssh.git'
-NeoBundle 'Shougo/unite-outline.git'
-NeoBundle 'Shougo/vim-vcs.git'
-"NeoBundle 'Shougo/vimfiler.git'
-NeoBundle 'Shougo/neocomplcache.git'
-NeoBundle 'Shougo/neomru.vim'
-"NeoBundle 'Shougo/neosnippet.vim'
-"NeoBundle 'airblade/vim-gitgutter'
-"NeoBundle 'altercation/vim-colors-solarized'
-"NeoBundle 'AtsushiM/sass-compile.vim'
-NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'c9s/perlomni.vim'
-NeoBundle 'cohama/vim-smartinput-endwise'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'heavenshell/unite-zf.git'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'hotchpotch/perldoc-vim'
-NeoBundle 'itchyny/Calendar.vim'
-"NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'jnwhiteh/vim-golang'
-"NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kannokanno/unite-todo.git'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/emmet-vim'
-"NeoBundle 'mattn/calendar-vim'
-NeoBundle 'mattn/perlvalidate-vim.git'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'moznion/unite-git-conflict.vim'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'petdance/vim-perl'
-NeoBundle 'rhysd/accelerated-jk'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdtree.git'
-NeoBundle 'shawncplus/php.vim'
-"NeoBundle 'snipMate'
-NeoBundle 'spolu/dwm.vim'
-NeoBundle 't9md/vim-unite-ack.git'
-NeoBundle 'taichouchou2/html5.vim'
-"NeoBundle 'taichouchou2/surround.vim'
-"NeoBundle 'taichouchou2/vim-javascript'
-NeoBundle 'taka84u9/vim-ref-ri'
-NeoBundle 'taka84u9/unite-git'
 
 filetype plugin on
 filetype indent on
@@ -193,7 +133,3 @@ noremap <C-P> :Unite buffer<CR>
 noremap <C-N> :Unite -buffer-name=file file<CR>
 " 最近使ったファイルの一覧
 noremap <C-Z> :Unite file_mru<CR>
-
-"source $HOME/dotfiles/.vimrc.neocomplete
-source $HOME/dotfiles/.vimrc.colorconfig
-"source $HOME/dotfiles/.vimrc.yankround
