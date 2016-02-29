@@ -52,6 +52,3 @@ shopt -s autocd
 shopt -s cdspell
 
 exec /bin/zsh
-
-# composer
-export PATH="$HOME/.composer/vendor/bin:$PATH"
