@@ -19,6 +19,18 @@ syntax on "コードの色分け
 highlight Commnet ctermfg=DarkCyan
 set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
+set cursorline "カーソル行の背景変更
+
+"------------------------------------------------------
+"折りたたみ関連
+"------------------------------------------------------
+set foldenable
+"set foldopen=all "fold内に移動すれば自動で開く
+"set foldclose=all
+set foldlevel=2 "折り畳み具合
+set foldmethod=indent "折畳処理のパターン
+set foldcolumn=6 "折畳を示すカラム幅
+set foldnestmax=6 "折畳のシンタックスの最大数
 
 "------------------------------------------------------
 "検索関係
@@ -28,9 +40,9 @@ set ignorecase "検索時に大文字小文字を区別しない
 set smartcase "検索時に大文字が含まれている場合は区別する
 set wrapscan "最後まで検索したら頭に戻る
 set incsearch "インクリメントサーチ
-
 set clipboard=unnamed,autoselect
 set ruler "ルーラーの表示
+
 "------------------------------------------------------
 "インデント
 "------------------------------------------------------
@@ -73,6 +85,8 @@ nnoremap : ;
 "uniteプラグイン
 nmap <Space>u [unite]
 nnoremap <silent>[unite]y :<C-u>Unite yankround<CR>
+"NERDTreeプラグイン"
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "行移動入れ替え
 nnoremap j gj
 nnoremap k gk
