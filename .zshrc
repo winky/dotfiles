@@ -19,7 +19,8 @@ alias cdh='dirs -v'
 alias pd='popd'
 alias la='ls -a'
 alias ll='ls -hl'
-alias al='ls -hal'
+alias lla='ls -hal'
+alias mkdir='mkdir -p'
 #alias rm='rm -i'
 #alias cp='cp -i'
 #alias mv='mv -i'
@@ -32,9 +33,11 @@ alias ng='ngix'
 alias gti='git'
 alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
-fpath=(/usr/local/share/zsh-completions $fpath)
+#fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit -u
+__git_files() { _files }
 
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
