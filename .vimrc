@@ -4,9 +4,9 @@
 set encoding=UTF-8
 set fileencoding=UTF-8
 set termencoding=UTF-8
-
 set nocompatible "viの互換をなくす
 set backspace=indent,eol,start "バックスペースの挙動
+colorscheme molokai
 
 "------------------------------------------------------
 "表示設定
@@ -101,14 +101,12 @@ imap ( ()<LEFT>
 
 filetype off "ファイルタイプ関連を無効化
 
-if has('vim_starting')
-	if &compatible
-	 set nocompatible   " Be iMproved0 endif
-	endif
-	 set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
+if &compatible
+ set nocompatible   " Be iMproved0 endif
 endif
+set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
 
-call neobundle#begin(expand('$HOME/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "------------------------------------------------------
