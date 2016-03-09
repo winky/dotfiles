@@ -133,6 +133,8 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'tomasr/molokai'
 " 囲いを簡易化
 NeoBundle 'tpope/vim-surround'
+" editorconfig有効化
+NeoBundle 'editorconfig/editorconfig-vim'
 
 filetype plugin on
 filetype indent on
