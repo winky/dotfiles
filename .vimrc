@@ -101,12 +101,48 @@ imap ( ()<LEFT>
 
 filetype off "ファイルタイプ関連を無効化
 
-if &compatible
- set nocompatible   " Be iMproved0 endif
-endif
-set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" dein.vivmがなければgithubから落としてくる
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" 設定開始
+call dein#begin(s:dein_dir)
+
+" プラグインリストを収めた TOML ファイル
+let s:toml      = '~/.vim/rc/dein.toml'
+let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
+
+
+" TOML を読み込み、キャッシュしておく
+if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
+endif
+
+
+" 設定終了
+call dein#end()
+
+" 未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
+
+" if &compatible
+"  set nocompatible   " Be iMproved0 endif
+" endif
+" set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
+
+" call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "------------------------------------------------------
@@ -125,6 +161,8 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 " インデントに色を付けて見やすくする
 NeoBundle 'nathanaelkane/vim-indent-guides'
+" 置換ハイライト
+NeoBundle 'osyo-manga/vim-over'
 " 行末の半角スペースを可視化
 NeoBundle 'bronson/vim-trailing-whitespace'
 " 括弧自動補完
