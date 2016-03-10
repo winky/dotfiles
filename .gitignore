@@ -1,3 +1,4 @@
 .atom/packages/*
 .vim/bundle/*
+.cache/
 !.vim/bundle/neobundle.vim

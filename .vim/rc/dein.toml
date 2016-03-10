@@ -1,0 +1,59 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+    [plugins.build]
+    windows = 'tools\\update-dll-mingw'
+    cygwin  = 'make -f make_cygwin.mak'
+    mac     = 'make -f make_mac.mak'
+    linux   = 'make'
+    unix    = 'gmake'
+
+# キャッシュを備えた自動補完機能
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+# コードスニペット
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# NERDTree
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+# make時のエラーマーカー表示
+[[plugins]]
+repo = 'errormarker.vim'
+
+# インデントに色を付けて見やすくする
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+# 置換ハイライト
+[[plugins]]
+repo = 'osyo-manga/vim-over'
+
+# 行末の半角スペースを可視化
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+# 括弧自動補完
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+
+# molokai カラースキーム
+[[plugins]]
+repo = 'tomasr/molokai'
+
+# 囲いを簡易化
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# editorconfig有効化
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
