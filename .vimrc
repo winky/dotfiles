@@ -101,92 +101,52 @@ imap ( ()<LEFT>
 
 filetype off "ファイルタイプ関連を無効化
 
-let s:dein_dir = expand('~/.cache/dein')
-" dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" dein.vivmがなければgithubから落としてくる
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+if has('vim_starting')
+    " dein settings
+    if &compatible
+        set nocompatible
     endif
-    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+
+    " dein.vimのディレクトリ
+    let s:dein_dir = expand('~/.cache/dein')
+    " dein.vim 本体
+    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+    
+    " dein.vivmがなければgithubから落としてくる
+    if &runtimepath !~# '/dein.vim'
+        if !isdirectory(s:dein_repo_dir)
+            execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+        endif
+        execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
+    endif
+
+    " 設定開始
+    call dein#begin(s:dein_dir)
+    
+    " プラグインリストを収めた TOML ファイル
+    let s:toml      = '~/.vim/rc/dein.toml'
+    let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
+
+    " TOML を読み込み、キャッシュしておく
+    if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
+      call dein#load_toml(s:toml,      {'lazy': 0})
+      call dein#load_toml(s:lazy_toml, {'lazy': 1})
+      call dein#save_cache()
+    endif
+
+
+    " 設定終了
+    call dein#end()
+
+    " 未インストールものものがあったらインストール
+    if dein#check_install()
+      call dein#install()
+    endif
+
+    filetype plugin indent on
+    filetype indent on
+
 endif
-
-" 設定開始
-call dein#begin(s:dein_dir)
-
-" プラグインリストを収めた TOML ファイル
-let s:toml      = '~/.vim/rc/dein.toml'
-let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
-
-
-" TOML を読み込み、キャッシュしておく
-if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  call dein#save_cache()
-endif
-
-
-" 設定終了
-call dein#end()
-
-" 未インストールものものがあったらインストール
-if dein#check_install()
-  call dein#install()
-endif
-
-" if &compatible
-"  set nocompatible   " Be iMproved0 endif
-" endif
-" set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
-
-" call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-"------------------------------------------------------
-"github（プラグイン）
-"------------------------------------------------------
-" NERDTreeを設定
-NeoBundle 'scrooloose/nerdtree'
-" make時のエラーマーカー表示
-NeoBundle 'errormarker.vim'
-" Vimステータスライン
-NeoBundle 'itchyny/lightline.vim'
-" キャッシュを備えた自動補完機能
-NeoBundle 'Shougo/neocomplete.vim'
-" コードスニペット
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-" インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
-" 置換ハイライト
-NeoBundle 'osyo-manga/vim-over'
-" 行末の半角スペースを可視化
-NeoBundle 'bronson/vim-trailing-whitespace'
-" 括弧自動補完
-NeoBundle 'Townk/vim-autoclose'
-" molokai カラースキーム
-NeoBundle 'tomasr/molokai'
-" 囲いを簡易化
-NeoBundle 'tpope/vim-surround'
-" editorconfig有効化
-NeoBundle 'editorconfig/editorconfig-vim'
-
-filetype plugin on
-filetype indent on
-
-"vimproc自動アップデート
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-call neobundle#end()
 
 "-----------------------------------------------------
 "NERDTree.vimの設定
