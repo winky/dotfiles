@@ -2,7 +2,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
+repo = 'Shougo/vimproc'
 
     [plugins.build]
     windows = 'tools\\update-dll-mingw'
