@@ -13,6 +13,7 @@ colorscheme molokai
 "------------------------------------------------------
 set hlsearch "検索文字列ハイライト
 set showmatch "括弧入力時の対応する括弧を表示
+set matchtime=3 "対応括弧の表示秒数を3秒にする
 set showcmd "入力中のコマンドをステータスに表示
 set laststatus=2 "ステータスラインを常に表示
 syntax on "コードの色分け
@@ -20,6 +21,7 @@ highlight Commnet ctermfg=DarkCyan
 set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
+set number "行番号を表示
 
 "------------------------------------------------------
 "折りたたみ関連
@@ -44,13 +46,6 @@ set clipboard=unnamed,autoselect
 set ruler "ルーラーの表示
 
 "------------------------------------------------------
-"インデント
-"------------------------------------------------------
-set tabstop=4 "タブ幅をスペース4つ分に
-set shiftwidth=4 "自動インデントの幅
-set softtabstop=4 "タブやバックスペースの使用時のタブ幅
-
-"------------------------------------------------------
 "環境設定
 "------------------------------------------------------
 set noswapfile "swapファイルをつくらない
@@ -62,12 +57,12 @@ set nobackup "バックアップしない
 "------------------------------------------------------
 set scrolloff=5 "スクロール時の余白確保
 set autoread "他で書き換えられたら自動的に読み直す
-set number "行番号を表示
 set autoindent "インデントを自動で
 set expandtab "タブをスペースインデントに変更"
 set whichwrap=b,s,h,l,[,],<,> "カーソルで次の行へ
 set wildchar=<tab> "コマンド補完を開始するキー
 let php_sql_query = 1
+filetype off "ファイルタイプ関連を無効化
 
 "------------------------------------------------------
 "キーバインド
@@ -82,11 +77,6 @@ inoremap jj <Esc>
 ";と:の機能を入れ替える
 nnoremap ; :
 nnoremap : ;
-"uniteプラグイン
-nmap <Space>u [unite]
-nnoremap <silent>[unite]y :<C-u>Unite yankround<CR>
-"NERDTreeプラグイン"
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "行移動入れ替え
 nnoremap j gj
 nnoremap k gk
@@ -99,8 +89,10 @@ imap { {}<LEFT>
 imap [ []<LEFT>
 imap ( ()<LEFT>
 
-filetype off "ファイルタイプ関連を無効化
 
+"------------------------------------------------------
+"プラグイン管理
+"------------------------------------------------------
 if has('vim_starting')
     " dein settings
     if &compatible
@@ -111,7 +103,7 @@ if has('vim_starting')
     let s:dein_dir = expand('~/.cache/dein')
     " dein.vim 本体
     let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-    
+
     " dein.vivmがなければgithubから落としてくる
     if &runtimepath !~# '/dein.vim'
         if !isdirectory(s:dein_repo_dir)
@@ -122,7 +114,7 @@ if has('vim_starting')
 
     " 設定開始
     call dein#begin(s:dein_dir)
-    
+
     " プラグインリストを収めた TOML ファイル
     let s:toml      = '~/.vim/rc/dein.toml'
     let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
@@ -156,6 +148,27 @@ let NERDTreeShowHidden = 1
 
 " デフォルトでツリーを表示させる
 autocmd VimEnter * execute 'NERDTree'
+" ツリーの表示非表示切り替え
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+"-----------------------------------------------------
+"Unite.vimの設定
+"------------------------------------------------------
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 "-----------------------------------------------------
 "vim-indent-guidesの設定
