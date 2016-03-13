@@ -57,3 +57,35 @@ repo = 'tpope/vim-surround'
 # editorconfig有効化
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+# ファイル操作快適化
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+# Unite.vimで最近使ったファイルを表示
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+# ログファイルを色づけしてくれる
+[[plugins]]
+repo = 'vim-scripts/AnsiEsc.vim'
+
+# ステータスライン表示
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+# css3用syntax
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+# javascript用syntax
+[[plugins]]
+repo = 'jelera/vim-javascript-syntax'
+
+# HTML5文法チェック
+[[plugins]]
+repo = 'hokaccha/vim-html5validator'
+
+# Vim上でGit
+[[plugins]]
+repo = 'tpope/vim-fugitive'
