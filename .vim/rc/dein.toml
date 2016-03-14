@@ -11,14 +11,7 @@ repo = 'Shougo/vimproc'
     linux   = 'make'
     unix    = 'gmake'
 
-# キャッシュを備えた自動補完機能
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-
-# コードスニペット
-[[plugins]]
-repo = 'Shougo/neosnippet'
-
+# スニペット
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
@@ -41,10 +34,6 @@ repo = 'osyo-manga/vim-over'
 # 行末の半角スペースを可視化
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
-
-# 括弧自動補完
-[[plugins]]
-repo = 'Townk/vim-autoclose'
 
 # molokai カラースキーム
 [[plugins]]
