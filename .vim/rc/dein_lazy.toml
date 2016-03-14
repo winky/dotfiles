@@ -1,0 +1,16 @@
+# 括弧自動補完
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+on_i = 1
+
+# キャッシュを備えた自動補完機能
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
+
+# コードスニペット
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
