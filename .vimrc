@@ -22,7 +22,6 @@ set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
 set number "行番号を表示
-set mouse=a
 
 "------------------------------------------------------
 "折りたたみ関連
@@ -114,6 +113,7 @@ if has('vim_starting')
     endif
 
     " 設定開始
+if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     " プラグインリストを収めた TOML ファイル
@@ -121,15 +121,12 @@ if has('vim_starting')
     let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
 
     " TOML を読み込み、キャッシュしておく
-    if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
-      call dein#load_toml(s:toml,      {'lazy': 0})
-      call dein#load_toml(s:lazy_toml, {'lazy': 1})
-      call dein#save_cache()
-    endif
-
-
+    call dein#load_toml(s:toml,      {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
     " 設定終了
     call dein#end()
+    call dein#save_state()
+endif
 
     " 未インストールものものがあったらインストール
     if dein#check_install()
