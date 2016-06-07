@@ -4,7 +4,7 @@ root = true
 charset = utf-8
 indent_style = space
 trim_trailing_whitespace = true
-indent_size = 4
+indent_size = 2
 
 [*.php]
 indent_size = 4
