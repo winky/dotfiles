@@ -11,6 +11,7 @@ ZSH_THEME="dpoggi_my"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.iterm2_shell_integration.zsh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
 
 # Setting alias
