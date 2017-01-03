@@ -1,0 +1,33 @@
+# Environmental variables
+# Langage setting
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+# Langage setting for ssh
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Set zsh option
+# Change Directory without cd-command
+setopt auto_cd
+# Show the completion list
+setopt auto_list
+# Auto complete with completion key
+setopt auto_menu
+# Add changed directroy to Directory stack
+setopt auto_pushd
+# Don't add duplicated directroy to Directroy stack
+setopt pushd_ignore_dups
+# Add command without extra blanks
+setopt hist_reduce_blanks
+# Don't add duplicated command to history
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_save_no_dups
+# Add command immediately
+setopt inc_append_history
+# Auto correct the command
+setopt correct
+# Share the history to other zsh
+setopt extended_history
+
+function chpwd() { ls }
