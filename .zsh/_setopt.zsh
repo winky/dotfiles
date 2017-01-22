@@ -1,11 +1,3 @@
-# Environmental variables
-# Langage setting
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
-# Langage setting for ssh
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 # Set zsh option
 # Change Directory without cd-command
 setopt auto_cd
@@ -15,6 +7,8 @@ setopt auto_list
 setopt auto_menu
 # Add changed directroy to Directory stack
 setopt auto_pushd
+setopt auto_param_slash
+setopt auto_param_keys
 # Don't add duplicated directroy to Directroy stack
 setopt pushd_ignore_dups
 # Add command without extra blanks
@@ -25,9 +19,11 @@ setopt hist_ignore_dups
 setopt hist_save_no_dups
 # Add command immediately
 setopt inc_append_history
-# Auto correct the command
+# Check spell command
 setopt correct
+# Check spell all
+setopt correct_all
 # Share the history to other zsh
 setopt extended_history
-
-function chpwd() { ls }
+# Enable 8bit
+setopt print_eight_bit
