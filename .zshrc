@@ -18,5 +18,3 @@ if [[ -f $ZPLUG_HOME/init.zsh ]]; then
   fi
   zplug load
 fi
-
-function chpwd() { ls }
