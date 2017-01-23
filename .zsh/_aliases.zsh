@@ -29,7 +29,7 @@ alias gmom='git merge origin/master'
 alias gmu='git merge upstream/'
 alias gmum='git merge upstream/master'
 
-alias gp='git push'
+alias gpo='git push origin'
 
 alias gl='git pull'
 alias glu='git pull upsteram'
