@@ -7,8 +7,8 @@
 [ -z "$PS1" ] && return
 
 # use zsh
-if [ -f /bin/zsh ];then
-	exec /bin/zsh
+if [ -f /usr/bin/zsh ];then
+	exec /usr/bin/zsh
 fi
 
 # delete until slash
