@@ -1,6 +1,14 @@
 alias vi='vim'
 alias cdh='dirs -v'
 alias pd='popd'
+
+# Mac と Linuxの差分のため
+if [ $(uname) = "Darwin" ]; then
+    alias ls='ls -G '
+elif [ $(uname) = "Linux" ]; then
+    alias ls='ls -F --color=always '
+fi
+
 alias la='ls -a'
 alias ll='ls -hl'
 alias lla='ls -hal'
