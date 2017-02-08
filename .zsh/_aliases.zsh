@@ -14,8 +14,11 @@ alias ll='ls -hl'
 alias lla='ls -hal'
 alias mkdir='mkdir -p'
 alias gti='git'
+
 alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
+
+alias history='history -E 1'
 
 # For git
 alias ga='git add'
