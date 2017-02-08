@@ -169,6 +169,28 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 "-----------------------------------------------------
+"lightlineの設定
+"------------------------------------------------------
+let g:lightline = {
+      \   'active': {
+      \     'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   },
+      \   'inactive': {
+      \     'left': [ [ 'absolutepath' ] ],
+      \     'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+      \   },
+      \   'tabline': {
+      \     'left': [ [ 'tabs' ] ],
+      \     'right': [ [ 'close' ] ]
+      \   },
+      \   'tab': {
+      \     'active': [ 'tabnum', 'filename', 'modified' ],
+      \     'inactive': [ 'tabnum', 'filename', 'modified' ]
+      \   }
+      \ }
+
+"-----------------------------------------------------
 "vim-indent-guidesの設定
 "------------------------------------------------------
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
