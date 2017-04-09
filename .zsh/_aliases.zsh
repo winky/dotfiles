@@ -27,28 +27,32 @@ alias gb='git branch'
 alias gbd='git branch -d'
 
 alias gc='git commit -v'
-alias gc!='git commit -v --amend'
 alias gcm='git commit -m'
 
 alias gco='git checkout'
+alias gcob='git checkout -b'
 
 alias gd='git diff'
 
 alias gm='git merge'
-alias gmo='git merge origin/'
+alias gmo='git merge origin'
 alias gmom='git merge origin/master'
-alias gmu='git merge upstream/'
+alias gmu='git merge upstream'
 alias gmum='git merge upstream/master'
 
 alias gpo='git push origin'
 alias ggpo='git push origin $(git_current_branch)'
 
-alias gl='git pull'
-alias gglo='git pull origin $(git_current_branch)'
-alias glu='git pull upsteram'
-alias glum='git pull upstram master'
+alias gpl='git pull'
+alias ggplo='git pull origin $(git_current_branch)'
+alias gplu='git pull upsteram'
+alias gplum='git pull upstram master'
 
 alias gsb='git status -ab'
 alias gst='git status'
 
-alias gsu='git submodule update'
+alias gsbu='git submodule update'
+
+alias gl='git log'
+alias glg='git log --graph --branches --pretty=format:"%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset"'
+alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
