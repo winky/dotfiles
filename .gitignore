@@ -1,4 +1,6 @@
 .atom/packages/*
 .vim/bundle/*
+.tmux/plugins/*
 .cache/
 !.vim/bundle/neobundle.vim
+!.tmux/plugins/tpm
