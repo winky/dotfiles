@@ -4,10 +4,4 @@ root = true
 charset = utf-8
 indent_style = space
 trim_trailing_whitespace = true
-indent_size = 2
-
-[*.php]
 indent_size = 4
-
-[*.{html,twig,js}]
-indent_size = 2
