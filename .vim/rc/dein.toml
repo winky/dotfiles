@@ -69,7 +69,7 @@ repo = 'hail2u/vim-css3-syntax'
 
 # javascript用syntax
 [[plugins]]
-repo = 'jelera/vim-javascript-syntax'
+repo = 'othree/yajs.vim'
 
 # HTML5文法チェック
 [[plugins]]
@@ -78,3 +78,4 @@ repo = 'hokaccha/vim-html5validator'
 # Vim上でGit
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
