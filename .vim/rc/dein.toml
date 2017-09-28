@@ -7,7 +7,7 @@ repo = 'Shougo/vimproc'
     [plugins.build]
     windows = 'tools\\update-dll-mingw'
     cygwin  = 'make -f make_cygwin.mak'
-    mac     = 'make -f make_mac.mak'
+    mac     = 'make'
     linux   = 'make'
     unix    = 'gmake'
 
@@ -79,3 +79,14 @@ repo = 'hokaccha/vim-html5validator'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+# Markdown Preview
+[[plugins]]
+repo = 'kannokanno/previm'
+
+# Markdown Preview
+[[plugins]]
+repo = 'tyru/open-browser.vim'

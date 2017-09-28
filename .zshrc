@@ -18,3 +18,7 @@ if [[ -f $ZPLUG_HOME/init.zsh ]]; then
   fi
   zplug load
 fi
+
+if [[ -f ${HOME}/.iterm2_shell_integration.zsh ]]; then
+    source ${HOME}/.iterm2_shell_integration.zsh
+fi

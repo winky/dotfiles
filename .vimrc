@@ -218,3 +218,15 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
+
+"-----------------------------------------------------
+"vim-markdownの設定
+"------------------------------------------------------
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+let g:vim_markdown_folding_disabled=1
+
+"-----------------------------------------------------
+"previmの設定
+"------------------------------------------------------
+let g:previm_show_header=0
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
