@@ -63,30 +63,6 @@ repo = 'vim-scripts/AnsiEsc.vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
-# css3用syntax
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-
-# javascript用syntax
-[[plugins]]
-repo = 'othree/yajs.vim'
-
-# HTML5文法チェック
-[[plugins]]
-repo = 'hokaccha/vim-html5validator'
-
 # Vim上でGit
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-
-# Markdown
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-
-# Markdown Preview
-[[plugins]]
-repo = 'kannokanno/previm'
-
-# Markdown Preview
-[[plugins]]
-repo = 'tyru/open-browser.vim'

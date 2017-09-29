@@ -14,3 +14,33 @@ repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
 on_i = 1
 on_ft = ['snippet']
+
+# HTML5文法チェック
+[[plugins]]
+repo = 'hokaccha/vim-html5validator'
+on_ft = ['html']
+
+# javascript用syntax
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript']
+
+# css3用syntax
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = ['css']
+
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['markdown']
+
+# Markdown Preview
+[[plugins]]
+repo = 'kannokanno/previm'
+on_ft = ['markdown']
+
+# Markdown Preview
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_ft = ['markdown']
