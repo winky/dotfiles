@@ -226,7 +226,7 @@ endif
 "------------------------------------------------------
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 let g:user_emmet_mode='a'
-let g:user_emmet_expandabbr_key='<C-t>'
+let g:user_emmet_expandabbr_key='<C-a>'
 
 "-----------------------------------------------------
 "vim-markdownの設定
