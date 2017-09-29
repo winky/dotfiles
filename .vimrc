@@ -88,7 +88,9 @@ nnoremap ` /
 imap { {}<LEFT>
 imap [ []<LEFT>
 imap ( ()<LEFT>
-
+"matchit割当
+nmap <Tab> %
+vmap <Tab> %
 
 "------------------------------------------------------
 "プラグイン管理

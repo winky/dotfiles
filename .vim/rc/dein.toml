@@ -15,6 +15,9 @@ repo = 'Shougo/vimproc'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
+[[plugins]]
+repo = 'tmhedberg/matchit'
+
 # NERDTree
 [[plugins]]
 repo = 'scrooloose/nerdtree'
