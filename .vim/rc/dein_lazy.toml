@@ -18,12 +18,12 @@ on_ft = ['snippet']
 # HTML,CSSコーディング
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = ['html','css']
+on_ft = ['html','smarty','css']
 
 # HTML5文法チェック
 [[plugins]]
 repo = 'hokaccha/vim-html5validator'
-on_ft = ['html']
+on_ft = ['html','smarty']
 
 # javascript用syntax
 [[plugins]]
