@@ -15,6 +15,11 @@ depends = ['neosnippet-snippets']
 on_i = 1
 on_ft = ['snippet']
 
+# HTML,CSSコーディング
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html','css']
+
 # HTML5文法チェック
 [[plugins]]
 repo = 'hokaccha/vim-html5validator'

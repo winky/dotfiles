@@ -220,6 +220,12 @@ if has('syntax')
 endif
 
 "-----------------------------------------------------
+"emmetの設定
+"------------------------------------------------------
+let g:user_emmet_mode='a'
+let g:user_emmet_expandabbr_key='<C-t>'
+
+"-----------------------------------------------------
 "vim-markdownの設定
 "------------------------------------------------------
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
