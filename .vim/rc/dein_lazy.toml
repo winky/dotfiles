@@ -35,6 +35,11 @@ on_ft = ['javascript']
 repo = 'hail2u/vim-css3-syntax'
 on_ft = ['css']
 
+# Go用syntax
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+
 # Markdown
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
