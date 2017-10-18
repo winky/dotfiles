@@ -57,7 +57,7 @@ alias gl='git log'
 alias glg='git log --graph --branches --pretty=format:"%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset"'
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
 
-alias py=python
+alias py='python'
 
 if type "pyton2"  > /dev/null 2>&1; then
     alias python='python2'
