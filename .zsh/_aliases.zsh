@@ -19,6 +19,7 @@ alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
 
 alias history='history -E 1'
+alias hs='history'
 
 # For git
 alias ga='git add'
@@ -48,8 +49,12 @@ alias ggplo='git pull origin $(git_current_branch)'
 alias gplu='git pull upsteram'
 alias gplum='git pull upstram master'
 
+alias gr='git rebase -i'
+
 alias gsb='git status -ab'
 alias gst='git status'
+alias gsh='git stash'
+alias gshp='git stash pop'
 
 alias gsbu='git submodule update'
 
@@ -59,6 +64,8 @@ alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn
 
 alias py='python'
 
+alias -g G='| grep'
+
 if type "pyton2"  > /dev/null 2>&1; then
     alias python='python2'
 fi
@@ -66,3 +73,5 @@ fi
 if type "pip2"  > /dev/null 2>&1; then
     alias pip='pip2'
 fi
+
+alias doc='docker'
