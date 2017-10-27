@@ -19,7 +19,7 @@ alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
 
 alias history='history -E 1'
-alias hs='history'
+alias his='history'
 
 # For git
 alias ga='git add'
