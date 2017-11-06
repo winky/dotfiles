@@ -66,6 +66,8 @@ alias py='python'
 
 alias -g G='| grep'
 
+alias -g L='2>&1 | tee'
+
 if type "pyton2"  > /dev/null 2>&1; then
     alias python='python2'
 fi
