@@ -62,6 +62,17 @@ alias gl='git log'
 alias glg='git log --graph --branches --pretty=format:"%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset"'
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
 
+alias di='docker images'
+alias dps='docker ps'
+alias dpa='docker ps -a'
+alias dkd='docker run -d -P'
+alias dki='docker run -i -t'
+alias dr='docker rm'
+alias dri='docker rmi'
+alias drf='(){ docker stop $1 && docker rm $1 }'
+alias dlogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
 alias py='python'
 
 alias -g G='| grep'
@@ -75,5 +86,3 @@ fi
 if type "pip2"  > /dev/null 2>&1; then
     alias pip='pip2'
 fi
-
-alias doc='docker'
