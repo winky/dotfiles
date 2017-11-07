@@ -1,7 +1,6 @@
 .atom/packages/*
-.vim/bundle/*
 .tmux/plugins/*
 .tmux/resurrect/
+.zsh/cache/
 .cache/
-!.vim/bundle/neobundle.vim
 !.tmux/plugins/tpm
