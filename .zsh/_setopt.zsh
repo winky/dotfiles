@@ -25,5 +25,6 @@ setopt correct
 setopt correct_all
 # Share the history to other zsh
 setopt extended_history
+setopt share_history
 # Enable 8bit
 setopt print_eight_bit
