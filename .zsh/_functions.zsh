@@ -4,5 +4,3 @@ function peco-history-selection() {
     zle reset-prompt
 }
 zle -N peco-history-selection
-
-function chpwd() { ls }
