@@ -25,5 +25,3 @@ if type "pyenv"  > /dev/null 2>&1; then
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 fi
-
-source $HOME/.iterm2_shell_integration.zsh
