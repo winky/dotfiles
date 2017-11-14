@@ -1,3 +1,4 @@
+fpath=($DOTFILES/.zsh/completion/src $fpath)
 if [ -e $DOTFILES/.zsh/completion/zsh-completions ]; then
   fpath=($DOTFILES/.zsh/completion/zsh-completions/src $fpath)
 fi
