@@ -14,6 +14,7 @@ alias ll='ls -hl'
 alias lla='ls -hal'
 alias mkdir='mkdir -p'
 alias gti='git'
+alias cl='clear'
 
 alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
