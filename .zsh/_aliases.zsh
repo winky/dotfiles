@@ -63,16 +63,18 @@ alias glg='git log --graph --branches --pretty=format:"%C(yellow)%h%C(cyan)%d%Cr
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
 galias() { alias | grep 'git' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
-alias di='docker images'
-alias dps='docker ps'
-alias dpa='docker ps -a'
-alias dkd='docker run -d -P'
-alias dki='docker run -i -t'
-alias dr='docker rm'
-alias dri='docker rmi'
-alias drf='(){ docker stop $1 && docker rm $1 }'
-alias dlogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
-dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+alias dk='docker'
+alias dki='docker images'
+alias dkp='docker ps'
+alias dkpa='docker ps -a'
+alias dkr='docker run'
+alias dkrd='docker run -d -P'
+alias dkri='docker run -i -t'
+alias dkrm='docker rm'
+alias dkrmi='docker rmi'
+alias dkrmf='(){ docker stop $1 && docker rm $1 }'
+alias dklogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
+dkalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
 alias py='python'
 
