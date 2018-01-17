@@ -77,6 +77,13 @@ alias dkrmf='(){ docker stop $1 && docker rm $1 }'
 alias dklogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
 dkalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
+alias vg='vagrant'
+alias vgu='vagrant up'
+alias vgd='vagrant destroy'
+alias vgst='vagrant status'
+alias vglogin='vagrant ssh'
+valias() { alias | grep 'vagrant' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
 alias py='python'
 
 alias -g G='| grep'
