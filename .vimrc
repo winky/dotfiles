@@ -238,4 +238,5 @@ let g:vim_markdown_folding_disabled=1
 "previmの設定
 "------------------------------------------------------
 let g:previm_show_header=0
+let g:previm_custom_css_path='~/.vim/templates/previm/markdown.css'
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
