@@ -69,3 +69,7 @@ repo = 'itchyny/lightline.vim'
 # Vim上でGit
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+# Go用Plugin
+[[plugins]]
+repo = 'fatih/vim-go'

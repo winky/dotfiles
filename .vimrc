@@ -204,6 +204,17 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
 " 偶数番目のインデントの色
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 
+"-----------------------------------------------------
+"vim-goの設定
+"------------------------------------------------------
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+
 " http://inari.hatenablog.com/entry/2014/05/05/231307
 "-----------------------------------------------------
 "全角スペースの表示
