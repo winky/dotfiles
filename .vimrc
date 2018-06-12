@@ -62,7 +62,6 @@ set expandtab "タブをスペースインデントに変更"
 set whichwrap=b,s,h,l,[,],<,> "カーソルで次の行へ
 set wildchar=<tab> "コマンド補完を開始するキー
 let php_sql_query = 1
-filetype off "ファイルタイプ関連を無効化
 
 "------------------------------------------------------
 "キーバインド
