@@ -1,4 +1,4 @@
-DOTFILES=$HOME/dotfiles
+DOTFILES=$HOME/.dotfiles
 bindkey -d
 #------------------------------------------------------
 # Instal and load Plugin
