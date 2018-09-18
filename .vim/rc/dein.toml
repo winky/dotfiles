@@ -22,10 +22,6 @@ repo = 'tmhedberg/matchit'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-# make時のエラーマーカー表示
-[[plugins]]
-repo = 'errormarker.vim'
-
 # インデントに色を付けて見やすくする
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
