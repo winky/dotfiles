@@ -9,5 +9,8 @@ indent_size = 4
 [*.{html,js,json}]
 indent_size = 2
 
+[*.{yml,yaml,json}]
+indent_size=2
+
 [*.md]
 trim_trailing_whitespace = false
