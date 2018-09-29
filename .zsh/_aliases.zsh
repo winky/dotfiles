@@ -75,7 +75,10 @@ alias dkrm='docker rm'
 alias dkrmi='docker rmi'
 alias dkrmf='(){ docker stop $1 && docker rm $1 }'
 alias dklogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
-dkalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+dkalias() { alias | grep 'docker' | grep -v 'docker-compose' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+alias dkc='docker-compose'
+dkcalias() { alias | grep 'docker-compose' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
 alias vg='vagrant'
 alias vgu='vagrant up'
