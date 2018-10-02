@@ -22,3 +22,8 @@ fi
 if [[ -f ${HOME}/.iterm2_shell_integration.zsh ]]; then
     source ${HOME}/.iterm2_shell_integration.zsh
 fi
+
+if [ -e $(brew --prefix nvm)/nvm.sh ]; then
+    export NVM_DIR="${HOME}/.nvm"
+    source $(brew --prefix nvm)/nvm.sh
+fi
