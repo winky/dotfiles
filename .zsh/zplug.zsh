@@ -16,3 +16,12 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 zplug "peco/peco", as:command, from:gh-r, frozen:1
+
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+zplug load
