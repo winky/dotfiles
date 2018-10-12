@@ -12,6 +12,8 @@ zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 
 zplug "github/hub", as:command, from:gh-r
 
+zplug "soimort/translate-shell", at:stable, as:command, use:"build/*", \
+    hook-build:"make build"
 
 zplug "$DOTFILES/.zsh/themes", from:local, as:theme
 
