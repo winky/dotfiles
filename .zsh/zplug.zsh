@@ -10,6 +10,9 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 
+zplug "github/hub", as:command, from:gh-r
+
+
 zplug "$DOTFILES/.zsh/themes", from:local, as:theme
 
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
