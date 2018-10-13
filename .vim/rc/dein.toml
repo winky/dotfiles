@@ -4,12 +4,12 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/vimproc'
 
-    [plugins.build]
-    windows = 'tools\\update-dll-mingw'
-    cygwin  = 'make -f make_cygwin.mak'
-    mac     = 'make'
-    linux   = 'make'
-    unix    = 'gmake'
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin  = 'make -f make_cygwin.mak'
+  mac     = 'make'
+  linux   = 'make'
+  unix    = 'gmake'
 
 # スニペット
 [[plugins]]
