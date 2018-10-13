@@ -1,3 +1,4 @@
+# dein.vim
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -21,10 +22,29 @@ repo = 'tmhedberg/matchit'
 # NERDTree
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+  " 隠しファイルをデフォルトで表示させる
+  let g:NERDTreeShowHidden = 1
+
+  " デフォルトでツリーを表示させる
+  autocmd VimEnter * execute 'NERDTree'
+  " ツリーの表示非表示切り替え
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
+'''
 
 # インデントに色を付けて見やすくする
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+  " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+  let g:indent_guides_enable_on_vim_startup = 1
+  " 自動カラー無効
+  let g:indent_guides_auto_colors=0
+  " 奇数番目のインデントの色
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+  " 偶数番目のインデントの色
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+'''
 
 # 置換ハイライト
 [[plugins]]
@@ -61,6 +81,26 @@ repo = 'vim-scripts/AnsiEsc.vim'
 # ステータスライン表示
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+    \   'active': {
+    \     'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+    \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   },
+    \   'inactive': {
+    \     'left': [ [ 'absolutepath' ] ],
+    \     'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+    \   },
+    \   'tabline': {
+    \     'left': [ [ 'tabs' ] ],
+    \     'right': [ [ 'close' ] ]
+    \   },
+    \   'tab': {
+    \     'active': [ 'tabnum', 'filename', 'modified' ],
+    \     'inactive': [ 'tabnum', 'filename', 'modified' ]
+    \   }
+    \ }
+'''
 
 # Vim上でGit
 [[plugins]]

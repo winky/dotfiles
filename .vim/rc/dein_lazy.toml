@@ -19,6 +19,11 @@ on_ft = ['snippet']
 [[plugins]]
 repo = 'mattn/emmet-vim'
 on_ft = ['html','smarty','css']
+hook_source = '''
+  autocmd BufNewFile,BufRead *.{tpl} set filetype=html
+  let g:user_emmet_mode='a'
+  let g:user_emmet_expandabbr_key='<C-a>'
+'''
 
 # HTML5文法チェック
 [[plugins]]
@@ -39,16 +44,34 @@ on_ft = ['css']
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = ['go']
+hook_source = '''
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_build_constraints = 1
+'''
 
 # Markdown
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
 on_ft = ['markdown']
+hook_source = '''
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+  let g:vim_markdown_folding_disabled=1
+'''
 
 # Markdown Preview
 [[plugins]]
 repo = 'kannokanno/previm'
 on_ft = ['markdown']
+hook_source = '''
+  let g:previm_show_header=0
+  let g:previm_custom_css_path='~/.vim/templates/previm/markdown.css'
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
+'''
 
 # Markdown Preview
 [[plugins]]

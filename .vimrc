@@ -114,20 +114,20 @@ if has('vim_starting')
     endif
 
     " 設定開始
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
+    if dein#load_state(s:dein_dir)
+        call dein#begin(s:dein_dir)
 
-    " プラグインリストを収めた TOML ファイル
-    let s:toml      = '~/.vim/rc/dein.toml'
-    let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
+        " プラグインリストを収めた TOML ファイル
+        let s:toml      = '~/.vim/rc/dein.toml'
+        let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
 
-    " TOML を読み込み、キャッシュしておく
-    call dein#load_toml(s:toml,      {'lazy': 0})
-    call dein#load_toml(s:lazy_toml, {'lazy': 1})
-    " 設定終了
-    call dein#end()
-    call dein#save_state()
-endif
+        " TOML を読み込み、キャッシュしておく
+        call dein#load_toml(s:toml,      {'lazy': 0})
+        call dein#load_toml(s:lazy_toml, {'lazy': 1})
+        " 設定終了
+        call dein#end()
+        call dein#save_state()
+    endif
 
     " 未インストールものものがあったらインストール
     if dein#check_install()
@@ -138,17 +138,6 @@ endif
     filetype indent on
 
 endif
-
-"-----------------------------------------------------
-"NERDTree.vimの設定
-"------------------------------------------------------
-" 隠しファイルをデフォルトで表示させる
-let NERDTreeShowHidden = 1
-
-" デフォルトでツリーを表示させる
-autocmd VimEnter * execute 'NERDTree'
-" ツリーの表示非表示切り替え
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 "-----------------------------------------------------
 "Unite.vimの設定
@@ -169,51 +158,6 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-"-----------------------------------------------------
-"lightlineの設定
-"------------------------------------------------------
-let g:lightline = {
-      \   'active': {
-      \     'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \   },
-      \   'inactive': {
-      \     'left': [ [ 'absolutepath' ] ],
-      \     'right': [ [ 'lineinfo' ], [ 'percent' ] ]
-      \   },
-      \   'tabline': {
-      \     'left': [ [ 'tabs' ] ],
-      \     'right': [ [ 'close' ] ]
-      \   },
-      \   'tab': {
-      \     'active': [ 'tabnum', 'filename', 'modified' ],
-      \     'inactive': [ 'tabnum', 'filename', 'modified' ]
-      \   }
-      \ }
-
-"-----------------------------------------------------
-"vim-indent-guidesの設定
-"------------------------------------------------------
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
-" 自動カラー無効
-let g:indent_guides_auto_colors=0
-" 奇数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-" 偶数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
-
-"-----------------------------------------------------
-"vim-goの設定
-"------------------------------------------------------
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-
 " http://inari.hatenablog.com/entry/2014/05/05/231307
 "-----------------------------------------------------
 "全角スペースの表示
@@ -230,23 +174,3 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
-
-"-----------------------------------------------------
-"emmetの設定
-"------------------------------------------------------
-autocmd BufNewFile,BufRead *.{tpl} set filetype=html
-let g:user_emmet_mode='a'
-let g:user_emmet_expandabbr_key='<C-a>'
-
-"-----------------------------------------------------
-"vim-markdownの設定
-"------------------------------------------------------
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-let g:vim_markdown_folding_disabled=1
-
-"-----------------------------------------------------
-"previmの設定
-"------------------------------------------------------
-let g:previm_show_header=0
-let g:previm_custom_css_path='~/.vim/templates/previm/markdown.css'
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
