@@ -1,20 +1,49 @@
 # 括弧自動補完
 [[plugins]]
 repo = 'Townk/vim-autoclose'
-on_i = 1
+on_event = 'InsertEnter'
 
-# キャッシュを備えた自動補完機能
+# Completion for nvim or Vim 8+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")  || has("timers") && has("python3")'
+on_event = 'InsertCharPre'
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+# for deoplete on Vim8+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+on_event = 'InsertEvent'
+
+# for deoplete on Vim8+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+on_event = 'InsertEvent'
+
+# Completion for Vim 7
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-on_i = 1
+if = '!(has("nvim")  || has("timers") && has("python3")) && has("lua")'
+on_event = 'InsertCharPre'
+hook_source = '''
+  let g:neocomplete#enable_at_startup = 1
 '''
 
-
-
-'''
-
-
+# コードスニペット
 [[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+on_event = 'InsertCharPre'
+on_ft = ['snippet']
+
+# lexima
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_event = 'InsertEnter'
 
 # HTML5文法チェック
 [[plugins]]

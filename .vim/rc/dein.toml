@@ -7,7 +7,12 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc'
 build = 'make'
 
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
 
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
 
 # NERDTree
 [[plugins]]
@@ -24,6 +29,9 @@ hook_add = '''
     au VimEnter * execute 'NERDTree'
   aug END
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
 
 # インデントに色を付けて見やすくする
 [[plugins]]
@@ -52,6 +60,15 @@ hook_add = '''
   vnoremap <silent> <Space>o :OverCommandLine<CR>s//g<Left><Left>
   " カーソルしたの単語置換
   nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+'''
+
+# Commentout shoutcut
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+  " caw comment out
+  nmap <Leader>c <Plug>(caw:i:toggle)
+  vmap <Leader>c <Plug>(caw:i:toggle)
 '''
 
 # 行末の半角スペースを可視化
@@ -114,3 +131,6 @@ hook_add = '''
   nnoremap <silent><C-b> :Gblame<CR>
 '''
 
+# git status on Vim
+[[plugins]]
+repo = 'airblade/vim-gitgutter'

@@ -83,13 +83,6 @@ nnoremap gj j
 nnoremap gk k
 "検索機能
 nnoremap ` /
-"自動的に閉じ括弧を入力
-imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
-"matchit割当
-nmap <Tab> %
-vmap <Tab> %
 
 "------------------------------------------------------
 "プラグイン管理
