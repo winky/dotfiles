@@ -1,0 +1,28 @@
+# for javascript
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript']
+
+# for css3
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = ['css']
+
+# for Go
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+hook_source = '''
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_build_constraints = 1
+'''
+
+# for TOML
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']

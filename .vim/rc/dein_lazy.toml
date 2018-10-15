@@ -7,73 +7,16 @@ on_i = 1
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 on_i = 1
-
-# コードスニペット
-[[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets']
-on_i = 1
-on_ft = ['snippet']
-
-# HTML,CSSコーディング
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = ['html','smarty','css']
-hook_source = '''
-  autocmd BufNewFile,BufRead *.{tpl} set filetype=html
-  let g:user_emmet_mode='a'
-  let g:user_emmet_expandabbr_key='<C-a>'
 '''
+
+
+
+'''
+
+
+[[plugins]]
 
 # HTML5文法チェック
 [[plugins]]
 repo = 'hokaccha/vim-html5validator'
 on_ft = ['html','smarty']
-
-# javascript用syntax
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript']
-
-# css3用syntax
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-on_ft = ['css']
-
-# Go用syntax
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
-hook_source = '''
-  let g:go_highlight_functions = 1
-  let g:go_highlight_methods = 1
-  let g:go_highlight_structs = 1
-  let g:go_highlight_interfaces = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_extra_types = 1
-  let g:go_highlight_build_constraints = 1
-'''
-
-# Markdown
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-on_ft = ['markdown']
-hook_source = '''
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-  let g:vim_markdown_folding_disabled=1
-'''
-
-# Markdown Preview
-[[plugins]]
-repo = 'kannokanno/previm'
-on_ft = ['markdown']
-hook_source = '''
-  let g:previm_show_header=0
-  let g:previm_custom_css_path='~/.vim/templates/previm/markdown.css'
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
-'''
-
-# Markdown Preview
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-on_ft = ['markdown']

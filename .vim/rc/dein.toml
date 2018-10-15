@@ -7,12 +7,7 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc'
 build = 'make'
 
-# スニペット
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]]
-repo = 'tmhedberg/matchit'
 
 # NERDTree
 [[plugins]]
