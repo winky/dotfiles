@@ -2,15 +2,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# asynchronouse vim plugin
 [[plugins]]
 repo = 'Shougo/vimproc'
-
-  [plugins.build]
-  windows = 'tools\\update-dll-mingw'
-  cygwin  = 'make -f make_cygwin.mak'
-  mac     = 'make'
-  linux   = 'make'
-  unix    = 'gmake'
+build = 'make'
 
 # スニペット
 [[plugins]]
@@ -23,13 +18,16 @@ repo = 'tmhedberg/matchit'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-  " 隠しファイルをデフォルトで表示させる
+  " show hidden file
   let g:NERDTreeShowHidden = 1
 
-  " デフォルトでツリーを表示させる
-  autocmd VimEnter * execute 'NERDTree'
-  " ツリーの表示非表示切り替え
+  " show/hide NERDTree
   nnoremap <silent><C-e> :NERDTreeToggle<CR>
+  " show NERDTree default
+  aug nerdtree
+    au!
+    au VimEnter * execute 'NERDTree'
+  aug END
 '''
 
 # インデントに色を付けて見やすくする
@@ -40,15 +38,26 @@ hook_add = '''
   let g:indent_guides_enable_on_vim_startup = 1
   " 自動カラー無効
   let g:indent_guides_auto_colors=0
-  " 奇数番目のインデントの色
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-  " 偶数番目のインデントの色
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+  aug vimindent
+    au!
+    " 奇数番目のインデントの色
+    au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+    " 偶数番目のインデントの色
+    au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+  aug END
 '''
 
 # 置換ハイライト
 [[plugins]]
 repo = 'osyo-manga/vim-over'
+hook_add = '''
+  " 全体置換
+  nnoremap <silent> <Space>o :OverCommandLine<CR>%s//g<Left><Left>
+  " 選択範囲置換
+  vnoremap <silent> <Space>o :OverCommandLine<CR>s//g<Left><Left>
+  " カーソルしたの単語置換
+  nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+'''
 
 # 行末の半角スペースを可視化
 [[plugins]]
@@ -74,7 +83,7 @@ repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 
-# ログファイルを色づけしてくれる
+# ANSI escape sequences
 [[plugins]]
 repo = 'vim-scripts/AnsiEsc.vim'
 
@@ -102,10 +111,11 @@ hook_add = '''
     \ }
 '''
 
-# Vim上でGit
+# git command on Vim
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+  " show/hide git blame
+  nnoremap <silent><C-b> :Gblame<CR>
+'''
 
-# Go用Plugin
-[[plugins]]
-repo = 'fatih/vim-go'

@@ -116,14 +116,15 @@ if has('vim_starting')
     " 設定開始
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir)
+        let s:toml_dir = '~/.vim/rc'
 
         " プラグインリストを収めた TOML ファイル
-        let s:toml      = '~/.vim/rc/dein.toml'
-        let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
+        let s:toml          = s:toml_dir . '/dein.toml'
+        let s:lazy_toml     = s:toml_dir . '/dein_lazy.toml'
 
         " TOML を読み込み、キャッシュしておく
-        call dein#load_toml(s:toml,      {'lazy': 0})
-        call dein#load_toml(s:lazy_toml, {'lazy': 1})
+        call dein#load_toml(s:toml,         {'lazy': 0})
+        call dein#load_toml(s:lazy_toml,    {'lazy': 1})
         " 設定終了
         call dein#end()
         call dein#save_state()
@@ -135,8 +136,6 @@ if has('vim_starting')
     endif
 
     filetype plugin indent on
-    filetype indent on
-
 endif
 
 "-----------------------------------------------------
@@ -167,10 +166,10 @@ function! ZenkakuSpace()
 endfunction
 
 if has('syntax')
-    augroup ZenkakuSpace
-        autocmd!
-        autocmd ColorScheme * call ZenkakuSpace()
-        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-    augroup END
+    aug ZenkakuSpace
+        au!
+        au ColorScheme * call ZenkakuSpace()
+        au VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    aug END
     call ZenkakuSpace()
 endif
