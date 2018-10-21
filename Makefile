@@ -22,6 +22,9 @@ update: ## Update dotfiles settings
 	git submodule update
 	git submodule foreach git pull origin master
 
+homeConfig: ## Init config
+	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
+
 clean: ## Remove the dot files and this repo
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DEPLOY_TARGET), rm -vrf $(HOME)/$(val);)

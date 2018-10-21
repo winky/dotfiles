@@ -22,6 +22,9 @@ set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
 set number "行番号を表示
+if has ('nvim')
+    set guicursor=i-ci-ve:block
+endif
 
 "------------------------------------------------------
 "折りたたみ関連
@@ -42,7 +45,11 @@ set ignorecase "検索時に大文字小文字を区別しない
 set smartcase "検索時に大文字が含まれている場合は区別する
 set wrapscan "最後まで検索したら頭に戻る
 set incsearch "インクリメントサーチ
-set clipboard=unnamed,autoselect
+if has('nvim')
+    set clipboard=unnamed
+else
+    set clipboard=unnamed,autoselect
+endif
 set ruler "ルーラーの表示
 
 "------------------------------------------------------

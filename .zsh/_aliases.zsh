@@ -2,6 +2,10 @@ alias vi='vim'
 alias cdh='dirs -v'
 alias pd='popd'
 
+if type "nvim" > /dev/null 2>&1; then
+    alias vim='nvim'
+fi
+
 # Mac と Linuxの差分のため
 if [ $(uname) = "Darwin" ]; then
     alias ls='ls -G '
