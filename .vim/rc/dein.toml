@@ -87,14 +87,6 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-# ファイル操作快適化
-[[plugins]]
-repo = 'Shougo/unite.vim'
-
-# Unite.vimで最近使ったファイルを表示
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
 # ANSI escape sequences
 [[plugins]]
 repo = 'vim-scripts/AnsiEsc.vim'
