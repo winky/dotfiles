@@ -19,8 +19,8 @@ hook_add = '''
 # Completion for nvim or Vim 8+
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim")  || has("timers") && has("python3")'
-on_event = 'InsertCharPre'
+if = 'has("nvim") || has("timers") && has("python3")'
+on_event = 'InsertEnter'
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
 '''
@@ -28,20 +28,20 @@ hook_source = '''
 # for deoplete on Vim8+
 [[plugins]]
 repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
-on_event = 'InsertEvent'
+if = '!has("nvim") && has("timers") && has("python3")'
+on_event = 'InsertEnter'
 
 # for deoplete on Vim8+
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim")'
-on_event = 'InsertEvent'
+if = '!has("nvim") && has("timers") && has("python3")'
+on_event = 'InsertEnter'
 
 # Completion for Vim 7
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-if = '!(has("nvim")  || has("timers") && has("python3")) && has("lua")'
-on_event = 'InsertCharPre'
+if = '(!has("nvim") || !has("timers") || !has("python3")) && has("lua")'
+on_event = 'InsertEnter'
 hook_source = '''
   let g:neocomplete#enable_at_startup = 1
 '''
@@ -50,8 +50,11 @@ hook_source = '''
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_event = 'InsertCharPre'
+on_event = 'InsertEnter'
 on_ft = ['snippet']
+hook_source = '''
+  let g:neocomplete#enable_at_startup = 1
+'''
 
 # lexima
 [[plugins]]
