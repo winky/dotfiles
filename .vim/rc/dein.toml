@@ -7,6 +7,7 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc'
 build = 'make'
 
+# judgment filetype
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
