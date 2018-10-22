@@ -24,6 +24,7 @@ update: ## Update dotfiles settings
 
 homeConfig: ## Init config
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
+	ln -sfnv $(abspath config/git) $(HOME)/.config/git
 
 clean: ## Remove the dot files and this repo
 	@echo 'Remove dot files in your home directory...'
