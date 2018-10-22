@@ -1,0 +1,11 @@
+# syntax highlight
+ [[plugins]]
+ repo = 'pangloss/vim-javascript'
+ on_ft = ['javascript', 'javascript.jsx']
+ hook_post_source = '''
+   let g:javascript_plugin_jsdoc = 1
+ '''
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript']

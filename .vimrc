@@ -123,12 +123,14 @@ if has('vim_starting')
         let s:lazy_toml     = s:toml_dir . '/dein_lazy.toml'
         let s:syntax_toml   = s:toml_dir . '/dein_lazy_syntax.toml'
         let s:mkd_toml      = s:toml_dir . '/dein_lazy_markdown.toml'
+        let s:js_toml       = s:toml_dir . '/dein_lazy_javascript.toml'
 
         " TOML を読み込み、キャッシュしておく
         call dein#load_toml(s:toml,         {'lazy': 0})
         call dein#load_toml(s:lazy_toml,    {'lazy': 1})
         call dein#load_toml(s:syntax_toml,  {'lazy': 1})
         call dein#load_toml(s:mkd_toml,     {'lazy': 1})
+        call dein#load_toml(s:js_toml,      {'lazy': 1})
         " 設定終了
         call dein#end()
         call dein#save_state()
