@@ -14,22 +14,6 @@ repo = 'Shougo/context_filetype.vim'
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
 
-# NERDTree
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-  " show hidden file
-  let g:NERDTreeShowHidden = 1
-
-  " show/hide NERDTree
-  nnoremap <silent><C-e> :NERDTreeToggle<CR>
-  " show NERDTree default
-  aug nerdtree
-    au!
-    au VimEnter * execute 'NERDTree'
-  aug END
-'''
-
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 

@@ -1,7 +1,20 @@
-# 括弧自動補完
+# NERDTree
 [[plugins]]
-repo = 'Townk/vim-autoclose'
-on_event = 'InsertEnter'
+repo = 'scrooloose/nerdtree'
+on_cmd = 'NERDTree'
+hook_add = '''
+  " show hidden file
+  let g:NERDTreeShowHidden = 1
+
+  " close NERDTree when open file
+  let g:NERDTreeQuitOnOpen = 1
+
+  " not show file
+  let g:NERDTreeIgnore = ['\.git$', '\.DS_Store']
+
+  " show/hide NERDTree
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
+'''
 
 # Completion for nvim or Vim 8+
 [[plugins]]
