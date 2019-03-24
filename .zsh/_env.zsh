@@ -26,10 +26,7 @@ if type "pyenv"  > /dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
-if [ $(uname) = "Darwin" ]; then
-  BREW_NVM=$(brew --prefix nvm)
-  if [[ -e $BREW_NVM/nvm.sh ]]; then
-    export NVM_DIR="${HOME}/.nvm"
-    source $BREW_NVM/nvm.sh
-  fi
+if type "nodenv"  > /dev/null 2>&1; then
+    export PATH="$HOME/.nodenv/bin:$PATH"
+    eval "$(nodenv init -)"
 fi
