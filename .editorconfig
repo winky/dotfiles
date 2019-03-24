@@ -9,10 +9,10 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[*.{html,js,json}]
+[*.{html,js,ts}]
 indent_size = 2
 
-[*.{yml,yaml,toml,json}]
+[*.{yml,yaml,toml,json,sh}]
 indent_size=2
 
 [*.md]
