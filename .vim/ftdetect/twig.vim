@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.twig set filetype=htmljinja
+au BufNewFile,BufRead *.twig set filetype=htmljinja

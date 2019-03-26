@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.toml set filetype=toml
+au BufNewFile,BufRead *.toml set filetype=toml
