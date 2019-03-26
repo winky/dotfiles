@@ -8,7 +8,6 @@ on_ft = ['markdown']
 repo = 'kannokanno/previm'
 on_ft = ['markdown']
 hook_source = '''
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
   let g:vim_markdown_folding_disabled=1
 '''
 
@@ -19,5 +18,5 @@ on_ft = ['markdown']
 hook_source = '''
   let g:previm_show_header=0
   let g:previm_custom_css_path='~/.vim/templates/previm/markdown.css'
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :Previm
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} :PrevimOpen
 '''
