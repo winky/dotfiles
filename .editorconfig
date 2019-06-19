@@ -9,11 +9,15 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[*.{html,js,ts}]
+[*.{html,js,jsx,ts}]
 indent_size = 2
 
 [*.{yml,yaml,toml,json,sh}]
 indent_size=2
 
 [*.md]
+trim_trailing_whitespace = false
+
+[*.tsv]
+indent_style = tab
 trim_trailing_whitespace = false
