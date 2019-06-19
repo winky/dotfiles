@@ -4,3 +4,4 @@
 .zsh/cache/
 .cache/
 !.tmux/plugins/tpm
+.vim/.netrwhist
