@@ -12,6 +12,7 @@ deploy() {
   else
     echo "Fail dotfiles deploy"
     echo "$0: $LINENO: $FUNCNAME"
+  fi
 }
 
 deploy
