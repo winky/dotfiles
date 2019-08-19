@@ -3,5 +3,5 @@
 .tmux/resurrect/
 .zsh/cache/
 .cache/
+.netrwhist
 !.tmux/plugins/tpm
-.vim/.netrwhist
