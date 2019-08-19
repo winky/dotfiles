@@ -48,8 +48,7 @@ install: clean update deploy ## Run make update, deploy
 	@exec $$SHELL
 
 test: ## Run test of dotfiles and scripts
-	@echo 'Skip test'
-	@echo "Test doesn't exist."
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
 
 help: ## Print Usge
 	@echo ''
