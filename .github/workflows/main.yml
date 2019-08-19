@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_reqquest:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Test Command
+      run: make test
