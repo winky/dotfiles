@@ -54,8 +54,8 @@ alias gpor='git push origin $(git_current_branch) && hub compare $(git symbolic-
 
 alias gpl='git pull'
 alias ggplo='git pull origin $(git_current_branch)'
-alias gplu='git pull upsteram'
-alias gplum='git pull upstram master'
+alias gplu='git pull upstream'
+alias gplum='git pull upstream master'
 
 alias gr='git rebase -i'
 
