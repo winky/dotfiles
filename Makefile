@@ -47,10 +47,13 @@ clean: ## Remove the dot files and this repo
 install: clean update deploy ## Run make update, deploy
 	@exec $$SHELL
 
+test: ## Run test of dotfiles and scripts
+	@echo 'test doesn't exist'
+
 help: ## Print Usge
 	@echo ''
 	@echo 'Usage: Make COMMAND for dotfiles'
 	@echo 'Commands:'
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| sort \
-		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m\t%s\033[0m\t%s\n", $$1, $$2}'
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m\t%-30s\033[0m %s\n", $$1, $$2}'
