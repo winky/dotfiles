@@ -14,4 +14,13 @@
         "key": "cmd+r",
         "command": "workbench.action.reloadWindow"
     },
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": "ctrl+cmd+n",
+        "command": "explorer.newFolder"
+    },
 ]
