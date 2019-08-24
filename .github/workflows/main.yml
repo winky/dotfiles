@@ -5,6 +5,8 @@ on:
       - master
       - develop
   pull_reqquest:
+    branches:
+      - master
 
 jobs:
   test:
