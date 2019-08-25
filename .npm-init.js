@@ -40,9 +40,10 @@ module.exports = {
   main: "./dist/index.js",
   author: `${owner} (https://github.com/${owner})`,
   license: license,
-  repository: `${owner}/${name}`,
+  repository: `git+ssh://git@github.com/${owner}/${name}`,
   scripts: {
     prepare: "npm-run-all clean build:*",
+    "build:prepare": "echo 'no build'",
     clean: "rm -rf dist",
     lint: "upbin eslint '{src,__tests__}/**/**.{ts,tsx,json,js,jsx}' --cache",
     test: "upbin jest"
