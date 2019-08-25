@@ -4,4 +4,5 @@
 .zsh/cache/
 .cache/
 .netrwhist
+.npm-init.env.js
 !.tmux/plugins/tpm
