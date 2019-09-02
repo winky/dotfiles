@@ -1,14 +1,23 @@
 {
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [";"],
-      "after": [":"]
+      "before": [
+        ";"
+      ],
+      "after": [
+        ":"
+      ]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -20,11 +29,11 @@
   "workbench.editor.enablePreview": false,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.folding": true,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
   "eslint.enable": true,
   "eslint.nodePath": "/Users/winky/.nodenv/versions/10.15.2/lib/node_modules/eslint/bin",
-  "editor.formatOnPaste": false,
+  "editor.formatOnPaste": true,
   "editor.formatOnType": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "peacock.favoriteColors": [
