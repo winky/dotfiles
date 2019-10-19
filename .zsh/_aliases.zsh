@@ -49,7 +49,8 @@ alias gmum='git merge upstream/master'
 
 alias gpo='git push origin'
 alias ggpo='git push origin $(git_current_branch)'
-alias gpr='hub compare $(git symbolic-ref --short HEAD)'
+alias gpr='() { git fetch origin pull/$1/head:pull_$1 && git checkout pull_$1 }'
+alias ghd='hub compare $(git symbolic-ref --short HEAD)'
 alias gpor='git push origin $(git_current_branch) && hub compare $(git symbolic-ref --short HEAD)'
 
 alias gpl='git pull'
