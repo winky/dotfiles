@@ -34,7 +34,7 @@
   "eslint.enable": true,
   "eslint.nodePath": "/Users/winky/.nodenv/versions/10.15.2/lib/node_modules/eslint/bin",
   "editor.formatOnPaste": true,
-  "editor.formatOnType": false,
+  "editor.formatOnType": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "peacock.favoriteColors": [
     {
@@ -94,5 +94,10 @@
   "liveshare.featureSet": "insiders",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "workbench.editor.showTabs": true,
+  "workbench.activityBar.visible": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }
