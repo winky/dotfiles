@@ -1,17 +1,23 @@
 DOTFILES=$HOME/.dotfiles
+ZINIT_HOME=$DOTFILES/.zinit
 bindkey -d
 #------------------------------------------------------
 # Instal and load Plugin
+# ZINIT https://github.com/zdharma/zinit
 #------------------------------------------------------
-ZPLUG_HOME=$DOTFILES/.zplug
-if [[ -f $ZPLUG_HOME/init.zsh ]]; then
-  export ZPLUG_LOADFILE=$DOTFILES/.zsh/zplug.zsh
 
-  source $ZPLUG_HOME/init.zsh
-fi
+if [[ -f $ZINIT_HOME/bin/zinit.zsh ]]; then
+  declare -A ZINIT
+  ZINIT[HOME_DIR]=$ZINIT_HOME
+  ZINIT[BIN_DIR]=$ZINIT[HOME_DIR]/bin
+  ZINIT[PLUGINS_DIR]=$ZINIT[HOME_DIR]/plugins
+  ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
+  # Settings Customize Paths
+  export ZPFX="$ZINIT[HOME_DIR]/polaris"
 
-if [[ -f ${HOME}/.iterm2_shell_integration.zsh ]]; then
-  source ${HOME}/.iterm2_shell_integration.zsh
+  source $ZINIT[BIN_DIR]/zinit.zsh
+
+  source $DOTFILES/.zsh/zinit.zsh
 fi
 
 export PATH="/usr/local/bin/jenv:$PATH"

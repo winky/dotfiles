@@ -2,6 +2,7 @@
 .tmux/plugins/*
 .tmux/resurrect/
 .zsh/cache/
+.zinit/
 .cache/
 .netrwhist
 .npm-init.env.js
