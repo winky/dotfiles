@@ -54,6 +54,7 @@ alias ghd='hub compare $(git symbolic-ref --short HEAD)'
 alias gpor='git push origin $(git_current_branch) && hub compare $(git symbolic-ref --short HEAD)'
 
 alias gpl='git pull'
+alias gplo='git pull origin'
 alias ggplo='git pull origin $(git_current_branch)'
 alias gplu='git pull upstream'
 alias gplum='git pull upstream master'
@@ -87,6 +88,8 @@ dkalias() { alias | grep 'docker' | grep -v 'docker-compose' | sed "s/^\([^=]*\)
 
 alias dkc='docker-compose'
 dkcalias() { alias | grep 'docker-compose' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+alias kube='kubectl'
 
 alias vg='vagrant'
 alias vgu='vagrant up'
