@@ -23,9 +23,7 @@ init: ## Setup environment settings
 
 update: ## Update dotfiles settings
 	git pull origin master
-	git submodule init
-	git submodule update
-	git submodule foreach git pull origin master
+	git submodule update --init --recursive
 
 homeConfig: ## Init config
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
