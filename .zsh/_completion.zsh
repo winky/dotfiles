@@ -1,7 +1,4 @@
-fpath=($DOTFILES/.zsh/completion/src $fpath)
-if [ -e $DOTFILES/.zsh/completion/zsh-completions ]; then
-  fpath=($DOTFILES/.zsh/completion/zsh-completions/src $fpath)
-fi
+fpath=($fpath $DOTFILES/.zsh/completion/src)
 
 # 補完候補がなければより曖昧に候補を探す。
 # m:{a-z}={A-Z}: 小文字を大文字に変えたものでも補完する。
