@@ -31,9 +31,6 @@ zinit light 'peco/peco'
 # snippet for prompt theme
 # Load OMZ Git library
 zinit snippet OMZL::git.zsh
-# Load Git plugin from OMZ
-zinit snippet OMZP::git
-zinit cdclear -q # <- forget completions provided up to this moment
 
 setopt promptsubst
 autoload -Uz colors && colors
