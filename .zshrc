@@ -19,6 +19,3 @@ if [[ -f $ZINIT_HOME/bin/zinit.zsh ]]; then
 
   source $DOTFILES/.zsh/zinit.zsh
 fi
-
-export PATH="/usr/local/bin/jenv:$PATH"
-eval "$(jenv init -)"

@@ -28,6 +28,9 @@ zinit light 'junegunn/fzf'
 zinit ice lucid wait'!0' proto'ssh' from'gh-r' as'program' mv'peco*/peco -> peco'
 zinit light 'peco/peco'
 
+zinit ice lucid wati'!0' proto'ssh' form'gh-r' as'program' pick'asdf.sh'
+zinit light 'asdf-vm/asdf'
+
 # snippet for prompt theme
 # Load OMZ Git library
 zinit snippet OMZL::git.zsh

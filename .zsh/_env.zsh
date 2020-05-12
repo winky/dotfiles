@@ -19,14 +19,3 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/lib/python2.7/site-packages:/usr/texbin:$PATH"
-
-if type "pyenv"  > /dev/null 2>&1; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-fi
-
-if type "nodenv"  > /dev/null 2>&1; then
-    export PATH="$HOME/.nodenv/bin:$PATH"
-    eval "$(nodenv init -)"
-fi
