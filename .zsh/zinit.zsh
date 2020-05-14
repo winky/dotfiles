@@ -1,19 +1,15 @@
 zinit ice multisrc'_*.zsh'
 zinit light "$DOTFILES/.zsh"
 
-zinit ice lucid wait'!0' blockf atpull'zinit creinstall -q .'
-zinit light 'zsh-users/zsh-completions'
-zinit ice lucid wait'!0'
-zinit light 'zsh-users/zsh-autosuggestions'
-zinit ice lucid wait'!0'
-zinit light 'zsh-users/zsh-syntax-highlighting'
-zinit ice lucid wait'!0'
-zinit light 'zsh-users/zsh-history-substring-search'
+zinit lucid wait'!0' for \
+  light-mode 'zsh-users/zsh-autosuggestions' \
+  light-mode 'zsh-users/zsh-syntax-highlighting' \
+  light-mode 'zsh-users/zsh-history-substring-search' \
 
-zinit ice lucid wait'!0' pick'init.sh'
+zinit ice lucid wait'!0' pick'init.sh' \
+  atclone'rm -rf conf.d; rm -rf functions; rm -f *.fish;' \
+  atload'ENHANCD_FILTER=peco:fzf:fzy; export ENHANCD_FILTER;'
 zinit light 'b4b4r07/enhancd'
-ENHANCD_FILTER=peco:fzf:fzy
-export ENHANCD_FILTER
 
 zinit ice lucid wait'!0' proto'ssh' from'gh-r' as'program' mv'hub* -> hub' \
   atclone'prefix=$ZPFX ./hub/install; ln -sf ./hub/etc/hub.zsh_completion _hub;' \
@@ -21,14 +17,15 @@ zinit ice lucid wait'!0' proto'ssh' from'gh-r' as'program' mv'hub* -> hub' \
 zinit light 'github/hub'
 
 zinit ice lucid wait'!0' proto'ssh' from'gh-r' as'program'
-zinit light https://github.com/junegunn/fzf-bin
+zinit light 'junegunn/fzf-bin'
+
 zinit ice lucid wait'!0' as'command' multisrc'shell/{completion,key-bindings}.zsh' pick'bin/fzf-tmux'
 zinit light 'junegunn/fzf'
 
 zinit ice lucid wait'!0' proto'ssh' from'gh-r' as'program' mv'peco*/peco -> peco'
 zinit light 'peco/peco'
 
-zinit ice lucid wati'!0' proto'ssh' form'gh-r' as'program' pick'asdf.sh'
+zinit ice lucid wait'!0' form'gh-r' as'program' pick'asdf.sh'
 zinit light 'asdf-vm/asdf'
 
 # snippet for prompt theme
@@ -40,3 +37,6 @@ autoload -Uz colors && colors
 
 zinit ice pic"*.zsh-theme"
 zinit light "$DOTFILES/.zsh/themes"
+
+zinit ice lucid wait'!0' blockf atpull'zinit creinstall -q .' atload'zicompinit; zicdreplay'
+zinit light 'zsh-users/zsh-completions'
