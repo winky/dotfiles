@@ -28,6 +28,8 @@ update: ## Update dotfiles settings
 homeConfig: ## Init config
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
 	ln -sfnv $(abspath config/git) $(HOME)/.config/git
+	-@rm $(HOME)/.config/karabiner/karabiner.json
+	ln -s $(abspath config/karabiner)/karabiner.json $(HOME)/.config/karabiner/karabiner.json
 
 vscodeConfig: ## Init vscode json
 	-@rm $(VSCODE_SETTING_DIR)/settings.json
