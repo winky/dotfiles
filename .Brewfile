@@ -4,11 +4,13 @@ tap "homebrew/core"
 cask_args appdir: "/Applications"
 
 brew "gawk"
+brew "gpg"
 brew "mas"
 brew "neovim"
 brew "telnet"
 brew "tmux"
 brew "tree"
+brew "coreutils"
 
 cask "1password"
 cask "adobe-creative-cloud"
