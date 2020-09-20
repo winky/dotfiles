@@ -1,4 +1,4 @@
-DOTFILES=$HOME/.dotfiles
+DOTFILES=$PWD
 ZINIT_HOME=$DOTFILES/.zinit
 bindkey -d
 #------------------------------------------------------
