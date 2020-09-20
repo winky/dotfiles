@@ -1,6 +1,6 @@
 DOTPATH			:= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTFILESS 		:= $(wildcard .??*)
-EXCLUDES 		:= .DS_Store .git .gitmodules .gitignore
+EXCLUDES 		:= .DS_Store .git .gitmodules .gitignore .github
 DEPLOY_TARGET	:= $(filter-out $(EXCLUDES), $(DOTFILESS))
 VSCODE_SETTING_DIR := $(HOME)/Library/Application\ Support/Code/User
 VSCODE_SCRIPT_PATH := $(abspath config/vscode)
