@@ -4,6 +4,7 @@ tap "homebrew/core"
 cask_args appdir: "/Applications"
 
 brew "gawk"
+brew "graphviz"
 brew "gpg"
 brew "mas"
 brew "neovim"
