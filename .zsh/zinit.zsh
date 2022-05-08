@@ -20,7 +20,8 @@ zinit lucid wait'!0' from'gh-r' as'program' light-mode for \
   mv'gh*/bin/gh -> gh' 'cli/cli' \
 
 zinit lucid wait'!0' as'program' light-mode for \
-  atclone'./asdf.sh' atpull'%atclone' pick'bin/asdf' '@asdf-vm/asdf'
+  atload'. ./asdf.sh; ASDF_DIR=$DOTFILES/.zinit/plugins/asdf-vm---asdf; ASDF_DATA_DIR=$DOTFILES/.zinit/plugins/asdf-vm---asdf;' \
+  pick'bin/asdf' '@asdf-vm/asdf'
 
 # snippet for prompt theme
 # Load OMZ Git library
