@@ -1,3 +1,7 @@
 [user]
 	name = winky
 	email = y.kohada@gmail.com
+[pull]
+	rebase = false
+[core]
+	quotepath = false
