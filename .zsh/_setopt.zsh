@@ -28,3 +28,5 @@ setopt extended_history
 setopt share_history
 # Enable 8bit
 setopt print_eight_bit
+# Before printing each prompt string, apply substitutions to it.
+setopt promptsubst

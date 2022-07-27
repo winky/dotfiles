@@ -2,8 +2,6 @@ DOTPATH			:= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTFILESS 		:= $(wildcard .??*)
 EXCLUDES 		:= .DS_Store .git .gitmodules .gitignore .github
 DEPLOY_TARGET	:= $(filter-out $(EXCLUDES), $(DOTFILESS))
-VSCODE_SETTING_DIR := $(HOME)/Library/Application\ Support/Code/User
-VSCODE_SCRIPT_PATH := $(abspath config/vscode)
 
 .DEFAULT_GOAL	:= help
 
@@ -30,15 +28,6 @@ homeConfig: ## Init config
 	ln -sfnv $(abspath config/git) $(HOME)/.config/git
 	-@rm $(HOME)/.config/karabiner/karabiner.json
 	ln -s $(abspath config/karabiner)/karabiner.json $(HOME)/.config/karabiner/karabiner.json
-
-vscodeConfig: ## Init vscode json
-	-@rm $(VSCODE_SETTING_DIR)/settings.json
-	ln -s $(VSCODE_SCRIPT_PATH)/settings.json $(VSCODE_SETTING_DIR)/settings.json
-	-@rm $(VSCODE_SETTING_DIR)/keybindings.json
-	ln -s $(VSCODE_SCRIPT_PATH)/keybindings.json $(VSCODE_SETTING_DIR)/keybindings.json
-
-vscodeExtensionsSync: ## sync extensions
-	@bash $(VSCODE_SCRIPT_PATH)/sync.sh
 
 clean: ## Remove the dot files and this repo
 	@echo 'Remove dot files in your home directory...'
