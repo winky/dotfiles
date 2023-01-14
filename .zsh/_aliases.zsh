@@ -31,7 +31,7 @@ alias ga='git add'
 
 alias gb='git branch'
 alias gbd='git branch -d'
-alias gbdf='(){ git branch --merged $1 | grep -vE "^\*|master|$1" | xargs -I % git branch -d % }'
+alias gbdf='(){ git branch --merged $1 | grep -vE "^\*|master|$1" | xargs -I % git branch -D % }'
 
 alias gc='git commit -v'
 alias gcm='git commit -m'
