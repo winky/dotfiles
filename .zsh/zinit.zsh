@@ -15,7 +15,7 @@ zinit ice lucid wait'!0' as'program' pick'bin/fzf' \
   atpull'%atclone' multisrc'shell/{key-bindings,completion}.zsh'
 zinit light 'junegunn/fzf'
 
-zinit lucid wait'!0' from'gh-r' as'program' light-mode for \
+zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*linux_arm64*' light-mode for \
   mv'peco*/peco -> peco' 'peco/peco' \
   mv'gh*/bin/gh -> gh' 'cli/cli' \
 
