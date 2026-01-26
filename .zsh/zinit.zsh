@@ -19,9 +19,11 @@ zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*linux_arm64*' light-mode 
   mv'peco*/peco -> peco' 'peco/peco' \
   mv'gh*/bin/gh -> gh' 'cli/cli' \
 
-zinit lucid wait'!0' as'program' light-mode for \
-  atload'. ./asdf.sh; ASDF_DIR=$DOTFILES/.zinit/plugins/asdf-vm---asdf; ASDF_DATA_DIR=$DOTFILES/.zinit/plugins/asdf-vm---asdf;' \
-  pick'bin/asdf' '@asdf-vm/asdf'
+zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin-arm64*' \
+  atload'PATH=$HOME/.asdf/shims:$PATH;'
+zinit light 'asdf-vm/asdf'
+
+
 
 # snippet for prompt theme
 # Load OMZ Git library
