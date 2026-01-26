@@ -26,4 +26,11 @@ if [[ -f $ZINIT_ZSH ]]; then
   source $DOTFILES/.zsh/zinit.zsh
 fi
 
+#------------------------------------------------------
+# Directory navigation: zoxide
+#------------------------------------------------------
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
