@@ -60,3 +60,5 @@ shopt -s autocd
 shopt -s cdspell
 
 exec /bin/zsh
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"

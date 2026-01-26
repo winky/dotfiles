@@ -22,3 +22,5 @@ if [[ -f $ZINIT_ZSH ]]; then
   # Load Zinit settings
   source $DOTFILES/.zsh/zinit.zsh
 fi
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
