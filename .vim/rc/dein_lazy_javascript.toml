@@ -1,3 +1,5 @@
+# JavaScript support plugins for Vim environment
+
 # syntax highlight
 [[plugins]]
 repo = 'pangloss/vim-javascript'

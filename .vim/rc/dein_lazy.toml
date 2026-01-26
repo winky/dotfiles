@@ -1,86 +1,17 @@
-# NERDTree
+# Lazy-loaded plugins for Vim environment
+
+# NERDTree (file explorer)
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 on_cmd = 'NERDTree'
 hook_add = '''
-  " show hidden file
   let g:NERDTreeShowHidden = 1
-
-  " close NERDTree when open file
   let g:NERDTreeQuitOnOpen = 1
-
-  " not show file
   let g:NERDTreeIgnore = ['\.git$', '\.DS_Store']
-
-  " show/hide NERDTree
   nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
 
-# Completion for nvim or Vim 8+
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim") || has("timers") && has("python3")'
-on_event = 'InsertEnter'
-hook_source = '''
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 0
-  let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 0
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 10000
-  imap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
-  imap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
-  imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
-'''
-
-# Unite all interfaces
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-if = 'has("nvim") || has("timers") && has("python3")'
-hook_add = '''
-  nnoremap [denite] <Nop>
-  nmap <silent><C-c> [denite]
-'''
-hook_post_source = '''
-  call denite#custom#map('insert', "<Down>", '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', "<Up>", '<denite:move_to_previous_line>', 'noremap')
-'''
-
-# for deoplete on Vim8+
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = '!has("nvim") && has("timers") && has("python3")'
-on_event = 'InsertEnter'
-
-# for deoplete on Vim8+
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim") && has("timers") && has("python3")'
-on_event = 'InsertEnter'
-
-# Completion for Vim 7
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-if = '(!has("nvim") || !has("timers") || !has("python3")) && has("lua")'
-on_event = 'InsertEnter'
-hook_source = '''
-  let g:neocomplete#enable_at_startup = 1
-'''
-
-# コードスニペット
-[[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_event = 'InsertEnter'
-on_ft = ['snippet']
-hook_source = '''
-  let g:neocomplete#enable_at_startup = 1
-'''
-
-# lexima
+# lexima (auto close parentheses)
 [[plugins]]
 repo = 'cohama/lexima.vim'
 on_event = 'InsertEnter'
