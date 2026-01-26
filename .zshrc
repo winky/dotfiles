@@ -14,7 +14,7 @@ fi
 
 #------------------------------------------------------
 # Install and load Plugin
-# ZINIT https://github.com/zdharma/zinit
+# ZINIT https://github.com/zdharma-continuum/zinit
 #------------------------------------------------------
 
 if [[ -f $ZINIT_ZSH ]]; then
@@ -32,10 +32,15 @@ if [[ -f $ZINIT_ZSH ]]; then
 fi
 
 #------------------------------------------------------
-# Prompt theme: starship
+# Prompt theme: starship or custom theme
 #------------------------------------------------------
 if [[ -n "$USE_STARSHIP" ]]; then
   eval "$(starship init zsh)"
+else
+  # Load custom theme if starship is not available
+  if [[ -f $DOTFILES/.zsh/themes/winky.zsh-theme ]]; then
+    source $DOTFILES/.zsh/themes/winky.zsh-theme
+  fi
 fi
 
 #------------------------------------------------------
