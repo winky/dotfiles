@@ -1,11 +1,14 @@
 # Define variables
-DOTFILES=$PWD
+# Get dotfiles directory (works even with symlinks)
+DOTFILES=${${(%):-%x}:A:h}
 ZINIT_HOME=$DOTFILES/.zinit
 ZINIT_ZSH=$ZINIT_HOME/bin/zinit.zsh
-# Reset key bind
-bindkey -d
+
+# Set XDG cache directory if not set
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+
 #------------------------------------------------------
-# Instal and load Plugin
+# Install and load Plugin
 # ZINIT https://github.com/zdharma/zinit
 #------------------------------------------------------
 
@@ -14,9 +17,9 @@ if [[ -f $ZINIT_ZSH ]]; then
   # Settings Customize Paths
   ZINIT[HOME_DIR]=$ZINIT_HOME
   ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
-  export ZPFX="$ZINIT[HOME_DIR]/polaris"
+  export ZPFX="${ZINIT[HOME_DIR]}/polaris"
 
-  # Load Zinit sourcee zsh
+  # Load Zinit source zsh
   source $ZINIT_ZSH
 
   # Load Zinit settings
