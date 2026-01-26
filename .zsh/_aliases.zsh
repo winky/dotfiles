@@ -2,14 +2,14 @@ alias vi='vim'
 alias cdh='dirs -v'
 alias pd='popd'
 
-if type "nvim" > /dev/null 2>&1; then
+if command -v nvim > /dev/null 2>&1; then
     alias vim='nvim'
 fi
 
 # Switch Platform (Mac or Linux)
-if [ $(uname) = "Darwin" ]; then
+if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -G '
-elif [ $(uname) = "Linux" ]; then
+elif [[ $(uname) == "Linux" ]]; then
     alias ls='ls -F --color=always '
 fi
 
@@ -31,7 +31,7 @@ alias ga='git add'
 
 alias gb='git branch'
 alias gbd='git branch -d'
-alias gbdf='(){ git branch --merged $1 | grep -vE "^\*|master|$1" | xargs -I % git branch -D % }'
+gbdf() { git branch --merged $1 | grep -vE "^\*|master|$1" | xargs -I % git branch -D % }
 
 alias gc='git commit -v'
 alias gcm='git commit -m'
@@ -49,7 +49,7 @@ alias gmum='git merge upstream/master'
 
 alias gpo='git push origin'
 alias ggpo='git push origin $(git_current_branch)'
-alias gpr='() { git fetch origin pull/$1/head:pull_$1 && git checkout pull_$1 }'
+gpr() { git fetch origin pull/$1/head:pull_$1 && git checkout pull_$1 }
 alias gpor='git push origin $(git_current_branch) && gh pr create -w'
 
 alias gpl='git pull'
@@ -81,8 +81,8 @@ alias dkrd='dkr -d -P'
 alias dkri='dkr -i -t'
 alias dkrm='docker rm'
 alias dkrmi='docker rmi'
-alias dkrmf='(){ docker stop $1 && docker rm $1 }'
-alias dklogin='(){ docker exec -it $(docker ps -aqf "name=$1") bash; }'
+dkrmf() { docker stop $1 && docker rm $1 }
+dklogin() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 dkalias() { alias | grep 'docker' | grep -v 'docker-compose' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
 alias dkc='docker-compose'
@@ -103,10 +103,10 @@ alias -g G='| grep'
 
 alias -g L='2>&1 | tee'
 
-if type "pyton2"  > /dev/null 2>&1; then
+if command -v python2 > /dev/null 2>&1; then
     alias python='python2'
 fi
 
-if type "pip2"  > /dev/null 2>&1; then
+if command -v pip2 > /dev/null 2>&1; then
     alias pip='pip2'
 fi
