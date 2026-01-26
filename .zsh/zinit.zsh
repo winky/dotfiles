@@ -23,8 +23,6 @@ zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin-arm64*' \
   atload'PATH=$HOME/.asdf/shims:$PATH;'
 zinit light 'asdf-vm/asdf'
 
-
-
 # snippet for prompt theme
 # Load OMZ Git library
 zinit snippet OMZL::git.zsh
