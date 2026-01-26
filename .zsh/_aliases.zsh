@@ -81,6 +81,11 @@ alias glg='git log --graph --branches --pretty=format:"%C(yellow)%h%C(cyan)%d%Cr
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
 galias() { alias | grep 'git' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
+# lazygit (Git TUI)
+if command -v lazygit >/dev/null 2>&1; then
+    alias lg='lazygit'
+fi
+
 alias dk='docker'
 alias dki='docker images'
 alias dkp='docker ps'
