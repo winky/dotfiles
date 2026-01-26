@@ -17,7 +17,7 @@ set matchtime=3 "対応括弧の表示秒数を3秒にする
 set showcmd "入力中のコマンドをステータスに表示
 set laststatus=2 "ステータスラインを常に表示
 syntax on "コードの色分け
-highlight Commnet ctermfg=DarkCyan
+highlight Comment ctermfg=DarkCyan
 set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
