@@ -17,6 +17,8 @@ zstyle ':completion:*' format '%B%F{blue}%d%f%b'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # 補完候補をキャッシュする。
 zstyle ':completion:*' use-cache true
+# Create cache directory if it doesn't exist
+[[ ! -d $DOTFILES/.zsh/cache ]] && mkdir -p $DOTFILES/.zsh/cache
 zstyle ':completion:*' cache-path $DOTFILES/.zsh/cache
 # 補完候補
 # _oldlist 前回の補完結果を再利用する。
