@@ -6,11 +6,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# use zsh
-if [ -f /usr/bin/zsh ];then
-	exec /usr/bin/zsh
-fi
-
 # delete until slash
 stty werase undef
 bind '"\C-w": unix-filename-rubout'
@@ -58,7 +53,5 @@ function cd() {
 
 shopt -s autocd
 shopt -s cdspell
-
-exec /bin/zsh
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
