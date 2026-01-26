@@ -6,16 +6,25 @@ if command -v nvim > /dev/null 2>&1; then
     alias vim='nvim'
 fi
 
-# Switch Platform (Mac or Linux)
-if [[ $(uname) == "Darwin" ]]; then
-    alias ls='ls -G '
-elif [[ $(uname) == "Linux" ]]; then
-    alias ls='ls -F --color=always '
+# ls / eza configuration
+if command -v eza >/dev/null 2>&1; then
+    # Use eza if available
+    alias ls='eza --icons --git'
+    alias ll='eza -l --icons --git'
+    alias la='eza -la --icons --git'
+    alias lla='eza -la --icons --git'
+    alias tree='eza --tree --icons'
+else
+    # Fallback to standard ls
+    if [[ $(uname) == "Darwin" ]]; then
+        alias ls='ls -G'
+    elif [[ $(uname) == "Linux" ]]; then
+        alias ls='ls -F --color=always'
+    fi
+    alias la='ls -a'
+    alias ll='ls -hl'
+    alias lla='ls -hal'
 fi
-
-alias la='ls -a'
-alias ll='ls -hl'
-alias lla='ls -hal'
 alias mkdir='mkdir -p'
 alias gti='git'
 alias cl='clear'
@@ -96,6 +105,18 @@ alias vgd='vagrant destroy'
 alias vgst='vagrant status'
 alias vglogin='vagrant ssh'
 valias() { alias | grep 'vagrant' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# cat / bat configuration
+if command -v bat >/dev/null 2>&1; then
+    alias cat='bat'
+fi
+
+# grep / ripgrep configuration
+if command -v rg >/dev/null 2>&1; then
+    alias grep='rg'
+else
+    alias grep='grep --color=auto'
+fi
 
 alias py='python'
 
