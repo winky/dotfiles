@@ -7,39 +7,36 @@ DEPLOY_TARGET	:= $(filter-out $(EXCLUDES), $(DOTFILESS))
 
 all:
 
-list: ## Show all dotfiles in this repository
+list: ## Show all dotfiles in this repository (excluding .git, .DS_Store, etc.)
 	@$(foreach val, $(DEPLOY_TARGET), /bin/ls -dF $(val);)
 
-deploy: ## Create symlink to home directory
+deploy: ## Create symlinks to home directory for all dotfiles (e.g., .zshrc, .vimrc, .tmux.conf)
 	@echo 'Start to deploy dotfiles to home directory.'
 	@echo ''
 	@$(foreach val, $(DEPLOY_TARGET), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@echo ''
 
-init: ## Setup environment settings
-	@bash $(DOTPATH)/etc/init/init.sh
-
-update: ## Update dotfiles settings
+update: ## Update dotfiles from remote repository and initialize/update git submodules
 	git pull origin master
 	git submodule update --init --recursive
 
-homeConfig: ## Init config
+homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabiner)
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
 	ln -sfnv $(abspath config/git) $(HOME)/.config/git
 	-@rm $(HOME)/.config/karabiner/karabiner.json
 	ln -s $(abspath config/karabiner)/karabiner.json $(HOME)/.config/karabiner/karabiner.json
 
-clean: ## Remove the dot files and this repo
+clean: ## Remove all dotfiles symlinks from home directory (does not remove this repository)
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DEPLOY_TARGET), rm -vrf $(HOME)/$(val);)
 
-install: clean update deploy ## Run make update, deploy
+install: clean update deploy ## Full installation: clean existing dotfiles, update from remote, deploy symlinks, and reload shell
 	@exec $$SHELL
 
-test: ## Run test of dotfiles and scripts
+test: ## Run test suite for dotfiles and scripts (used by CI)
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
 
-help: ## Print Usge
+help: ## Print usage information and list all available commands
 	@echo ''
 	@echo 'Usage: Make COMMAND for dotfiles'
 	@echo 'Commands:'
