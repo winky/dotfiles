@@ -136,3 +136,5 @@ fi
 if command -v pip2 > /dev/null 2>&1; then
     alias pip='pip2'
 fi
+
+alias cr='cursor'
