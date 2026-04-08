@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "language": "japanese",
+  "alwaysThinkingEnabled": true,
+  "teammateMode": "tmux",
+  "model": "sonnet",
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*_rsa)",
+      "Read(**/*_dsa)",
+      "Read(**/*_ecdsa)",
+      "Read(**/*_ed25519)",
+      "Write(**/.env)",
+      "Write(**/.env.*)",
+      "Write(**/secrets/**)",
+      "Write(**/credentials/**)",
+      "Write(**/*.pem)",
+      "Write(**/*.key)",
+      "Write(**/*.p12)",
+      "Write(**/*.pfx)",
+      "Write(**/*_rsa)",
+      "Write(**/*_dsa)",
+      "Write(**/*_ecdsa)",
+      "Write(**/*_ed25519)"
+    ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ]
+  }
+}
