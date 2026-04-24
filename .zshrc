@@ -24,3 +24,4 @@ if [[ -f $ZINIT_ZSH ]]; then
 fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
