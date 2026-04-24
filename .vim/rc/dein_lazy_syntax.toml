@@ -1,7 +1,4 @@
-# for javascript
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript']
+# Syntax support plugins for Vim environment
 
 # for css3
 [[plugins]]

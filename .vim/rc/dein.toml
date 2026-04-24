@@ -1,62 +1,39 @@
-# dein.vim
-[[plugins]]
-repo = 'Shougo/dein.vim'
-
-# asynchronouse vim plugin
-[[plugins]]
-repo = 'Shougo/vimproc'
-build = 'make'
-
-# judgment filetype
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-depends = ['context_filetype.vim']
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+# dein.vim - Vim environment plugin management
+# Note: Neovim uses lazy.nvim (see ~/.config/nvim/init.lua)
 
 # インデントに色を付けて見やすくする
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
-  " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
   let g:indent_guides_enable_on_vim_startup = 1
-  " 自動カラー無効
   let g:indent_guides_auto_colors=0
   aug vimindent
     au!
-    " 奇数番目のインデントの色
     au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-    " 偶数番目のインデントの色
     au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
   aug END
 '''
 
 # 置換ハイライト
+# Note: Neovim uses built-in inccommand, but Vim needs this plugin
 [[plugins]]
 repo = 'osyo-manga/vim-over'
 hook_add = '''
-  " 全体置換
   nnoremap <silent> <Space>o :OverCommandLine<CR>%s//g<Left><Left>
-  " 選択範囲置換
   vnoremap <silent> <Space>o :OverCommandLine<CR>s//g<Left><Left>
-  " カーソルしたの単語置換
   nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 '''
 
-# Commentout shoutcut
+# Commentout shortcut
 [[plugins]]
 repo = 'tyru/caw.vim'
 hook_add = '''
-  " caw comment out
   nmap <Leader>c <Plug>(caw:i:toggle)
   vmap <Leader>c <Plug>(caw:i:toggle)
 '''
 
 # 行末の半角スペースを可視化
+# Note: Can be handled with listchars, but keeping plugin for Vim compatibility
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
@@ -104,7 +81,6 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-  " show/hide git blame
   nnoremap <silent><C-b> :Gblame<CR>
 '''
 

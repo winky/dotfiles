@@ -1,12 +1,20 @@
 # Define variables
-DOTFILES=$PWD
+# Get dotfiles directory (works even with symlinks)
+DOTFILES=${${(%):-%x}:A:h}
 ZINIT_HOME=$DOTFILES/.zinit
 ZINIT_ZSH=$ZINIT_HOME/bin/zinit.zsh
-# Reset key bind
-bindkey -d
+
+# Set XDG cache directory if not set
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+
+# Check if starship is available (for prompt theme)
+if command -v starship >/dev/null 2>&1; then
+  export USE_STARSHIP=1
+fi
+
 #------------------------------------------------------
-# Instal and load Plugin
-# ZINIT https://github.com/zdharma/zinit
+# Install and load Plugin
+# ZINIT https://github.com/zdharma-continuum/zinit
 #------------------------------------------------------
 
 if [[ -f $ZINIT_ZSH ]]; then
@@ -14,13 +22,32 @@ if [[ -f $ZINIT_ZSH ]]; then
   # Settings Customize Paths
   ZINIT[HOME_DIR]=$ZINIT_HOME
   ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
-  export ZPFX="$ZINIT[HOME_DIR]/polaris"
+  export ZPFX="${ZINIT[HOME_DIR]}/polaris"
 
-  # Load Zinit sourcee zsh
+  # Load Zinit source zsh
   source $ZINIT_ZSH
 
   # Load Zinit settings
   source $DOTFILES/.zsh/zinit.zsh
+fi
+
+#------------------------------------------------------
+# Prompt theme: starship or custom theme
+#------------------------------------------------------
+if [[ -n "$USE_STARSHIP" ]]; then
+  eval "$(starship init zsh)"
+else
+  # Load custom theme if starship is not available
+  if [[ -f $DOTFILES/.zsh/themes/winky.zsh-theme ]]; then
+    source $DOTFILES/.zsh/themes/winky.zsh-theme
+  fi
+fi
+
+#------------------------------------------------------
+# Directory navigation: zoxide
+#------------------------------------------------------
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
 fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

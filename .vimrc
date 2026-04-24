@@ -2,11 +2,26 @@
 "基本設定
 "------------------------------------------------------
 set encoding=UTF-8
-set fileencoding=UTF-8
-set termencoding=UTF-8
+" fileencoding is buffer-specific, set only in Vim
+" Neovim defaults to UTF-8, so no need to set it
+if !has('nvim')
+  set fileencoding=UTF-8
+  set termencoding=UTF-8
+endif
 set nocompatible "viの互換をなくす
 set backspace=indent,eol,start "バックスペースの挙動
-colorscheme molokai
+" Load colorscheme if available
+" Neovim: Use nightfox (configured in ~/.config/nvim/init.lua)
+" Vim: Use molokai
+if !has('nvim')
+  if filereadable(expand("~/.vim/colors/molokai.vim"))
+    try
+      colorscheme molokai
+    catch /^Vim\%((\a\+)\)\=:E185/
+      " Colorscheme not found, use default
+    endtry
+  endif
+endif
 
 "------------------------------------------------------
 "表示設定
@@ -17,7 +32,7 @@ set matchtime=3 "対応括弧の表示秒数を3秒にする
 set showcmd "入力中のコマンドをステータスに表示
 set laststatus=2 "ステータスラインを常に表示
 syntax on "コードの色分け
-highlight Commnet ctermfg=DarkCyan
+highlight Comment ctermfg=DarkCyan
 set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
@@ -94,10 +109,13 @@ nnoremap ` /
 "------------------------------------------------------
 "プラグイン管理
 "------------------------------------------------------
-if has('vim_starting')
+" Neovim: Use lazy.nvim (see ~/.config/nvim/init.lua)
+" Vim: Use dein.vim
+if !has('nvim')
+  if has('vim_starting')
     " dein settings
     if &compatible
-        set nocompatible
+      set nocompatible
     endif
 
     " dein.vimのディレクトリ
@@ -105,35 +123,35 @@ if has('vim_starting')
     " dein.vim 本体
     let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-    " dein.vivmがなければgithubから落としてくる
+    " dein.vimがなければgithubから落としてくる
     if &runtimepath !~# '/dein.vim'
-        if !isdirectory(s:dein_repo_dir)
-            execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-        endif
-        execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
+      if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+      endif
+      execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
     endif
 
     " 設定開始
     if dein#load_state(s:dein_dir)
-        call dein#begin(s:dein_dir)
-        let s:toml_dir = '~/.vim/rc'
+      call dein#begin(s:dein_dir)
+      let s:toml_dir = '~/.vim/rc'
 
-        " プラグインリストを収めた TOML ファイル
-        let s:toml          = s:toml_dir . '/dein.toml'
-        let s:lazy_toml     = s:toml_dir . '/dein_lazy.toml'
-        let s:syntax_toml   = s:toml_dir . '/dein_lazy_syntax.toml'
-        let s:mkd_toml      = s:toml_dir . '/dein_lazy_markdown.toml'
-        let s:js_toml       = s:toml_dir . '/dein_lazy_javascript.toml'
+      " プラグインリストを収めた TOML ファイル
+      let s:toml          = s:toml_dir . '/dein.toml'
+      let s:lazy_toml     = s:toml_dir . '/dein_lazy.toml'
+      let s:syntax_toml   = s:toml_dir . '/dein_lazy_syntax.toml'
+      let s:mkd_toml      = s:toml_dir . '/dein_lazy_markdown.toml'
+      let s:js_toml       = s:toml_dir . '/dein_lazy_javascript.toml'
 
-        " TOML を読み込み、キャッシュしておく
-        call dein#load_toml(s:toml,         {'lazy': 0})
-        call dein#load_toml(s:lazy_toml,    {'lazy': 1})
-        call dein#load_toml(s:syntax_toml,  {'lazy': 1})
-        call dein#load_toml(s:mkd_toml,     {'lazy': 1})
-        call dein#load_toml(s:js_toml,      {'lazy': 1})
-        " 設定終了
-        call dein#end()
-        call dein#save_state()
+      " TOML を読み込み、キャッシュしておく
+      call dein#load_toml(s:toml,         {'lazy': 0})
+      call dein#load_toml(s:lazy_toml,    {'lazy': 1})
+      call dein#load_toml(s:syntax_toml,  {'lazy': 1})
+      call dein#load_toml(s:mkd_toml,     {'lazy': 1})
+      call dein#load_toml(s:js_toml,      {'lazy': 1})
+      " 設定終了
+      call dein#end()
+      call dein#save_state()
     endif
 
     " 未インストールものものがあったらインストール
@@ -142,6 +160,10 @@ if has('vim_starting')
     endif
 
     filetype plugin indent on
+  endif
+else
+  " Neovim: Plugin management is handled by lazy.nvim
+  filetype plugin indent on
 endif
 
 " http://inari.hatenablog.com/entry/2014/05/05/231307

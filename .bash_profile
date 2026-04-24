@@ -1,6 +1,9 @@
 # Source global definitions
-if [ -f ~/dotfiles/.bashrc ]; then
-	. ~/dotfiles/.bashrc
+# Try to find .bashrc in common dotfiles locations
+if [ -f "$HOME/.dotfiles/.bashrc" ]; then
+	. "$HOME/.dotfiles/.bashrc"
+elif [ -f "$HOME/dotfiles/.bashrc" ]; then
+	. "$HOME/dotfiles/.bashrc"
 fi
 
 # delete until slash
@@ -21,9 +24,6 @@ export LESS='-R'
 export LESSOPEN=' | /usr/local/share/source-highlight/src-hilite-lesspipe.sh %s'
 
 # User specific aliases and functions
-#alias rm='rm -i'
-#alias cp='cp -i'
-#alias mv='mv -i'
 alias vi='vim'
 alias ll='ls -hl '
 alias la='ls -a '
@@ -40,5 +40,3 @@ alias vg='vagrant'
 alias ng='nginx'
 alias fxg='find ./ | xargs grep -n --color=always '
 alias gti='git'
-
-# composer

@@ -6,5 +6,6 @@
 .cache/
 .netrwhist
 .npm-init.env.js
+tmp/
 !.zinit/bin
 !.tmux/plugins/tpm
