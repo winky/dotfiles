@@ -28,6 +28,7 @@ homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabi
 	@mkdir -p $(HOME)/.claude
 	ln -sfnv $(abspath config/claude/settings.json) $(HOME)/.claude/settings.json
 	ln -sfnv $(abspath config/claude/CLAUDE.md) $(HOME)/.claude/CLAUDE.md
+	ln -sfnv $(abspath config/claude/statusline-command.sh) $(HOME)/.claude/statusline-command.sh
 
 clean: ## Remove all dotfiles symlinks from home directory (does not remove this repository)
 	@echo 'Remove dot files in your home directory...'
