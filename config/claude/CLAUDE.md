@@ -17,6 +17,8 @@ user impact, business impact, feasibility, and trade-offs for product/business t
 ## Git
 - Use Conventional Commits format (feat:, fix:, docs:, chore:, refactor:, etc.)
 - Write commit messages in English
+- When merging master into a branch, always use `git merge`, never `git rebase`
+- Never create or push git tags without explicit confirmation from the user
 
 ## Working Style
 - Plan before acting. Outline the approach and confirm before starting implementation

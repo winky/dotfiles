@@ -3,10 +3,14 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "language": "japanese",
-  "alwaysThinkingEnabled": true,
-  "teammateMode": "tmux",
-  "model": "sonnet",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
   "permissions": {
     "deny": [
       "Read(**/.env)",
@@ -35,11 +39,18 @@
       "Write(**/*_ed25519)"
     ]
   },
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
+  "model": "sonnet",
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/envguard --hook"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -93,5 +104,13 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/winky/.claude/statusline-command.sh"
+  },
+  "language": "japanese",
+  "alwaysThinkingEnabled": true,
+  "teammateMode": "tmux",
+  "effortLevel": "high"
 }

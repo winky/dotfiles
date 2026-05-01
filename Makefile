@@ -20,15 +20,11 @@ update: ## Update dotfiles from remote repository and initialize/update git subm
 	git pull origin master
 	git submodule update --init --recursive
 
-homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabiner, claude)
+homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabiner)
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
 	ln -sfnv $(abspath config/git) $(HOME)/.config/git
 	-@rm $(HOME)/.config/karabiner/karabiner.json
 	ln -s $(abspath config/karabiner)/karabiner.json $(HOME)/.config/karabiner/karabiner.json
-	@mkdir -p $(HOME)/.claude
-	ln -sfnv $(abspath config/claude/settings.json) $(HOME)/.claude/settings.json
-	ln -sfnv $(abspath config/claude/CLAUDE.md) $(HOME)/.claude/CLAUDE.md
-	ln -sfnv $(abspath config/claude/statusline-command.sh) $(HOME)/.claude/statusline-command.sh
 
 clean: ## Remove all dotfiles symlinks from home directory (does not remove this repository)
 	@echo 'Remove dot files in your home directory...'
