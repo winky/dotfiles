@@ -1,6 +1,6 @@
 DOTPATH			:= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTFILESS 		:= $(wildcard .??*)
-EXCLUDES 		:= .DS_Store .git .gitmodules .gitignore .github
+EXCLUDES 		:= .DS_Store .git .gitmodules .gitignore .github .claude
 DEPLOY_TARGET	:= $(filter-out $(EXCLUDES), $(DOTFILESS))
 
 .DEFAULT_GOAL	:= help
@@ -20,11 +20,13 @@ update: ## Update dotfiles from remote repository and initialize/update git subm
 	git pull origin master
 	git submodule update --init --recursive
 
-homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabiner)
+homeConfig: ## Create symlinks for configs that live inside existing real dirs (nvim, git, karabiner, claude)
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim
 	ln -sfnv $(abspath config/git) $(HOME)/.config/git
 	-@rm $(HOME)/.config/karabiner/karabiner.json
 	ln -s $(abspath config/karabiner)/karabiner.json $(HOME)/.config/karabiner/karabiner.json
+	@mkdir -p $(HOME)/.claude
+	@$(foreach f, $(wildcard .claude/*), ln -sfnv $(abspath $(f)) $(HOME)/$(f);)
 
 clean: ## Remove all dotfiles symlinks from home directory (does not remove this repository)
 	@echo 'Remove dot files in your home directory...'
