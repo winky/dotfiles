@@ -18,10 +18,14 @@ zinit light 'junegunn/fzf'
 zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*linux_arm64*' light-mode for \
   mv'peco*/peco -> peco' 'peco/peco' \
   mv'gh*/bin/gh -> gh' 'cli/cli' \
+  mv'ghq*/ghq -> ghq' 'x-motemen/ghq' \
 
 zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin-arm64*' \
   atload'PATH=$HOME/.asdf/shims:$PATH;'
 zinit light 'asdf-vm/asdf'
+
+zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin_arm64*' mv'ghq*/ghq -> ghq'
+zinit light 'x-motemen/ghq'
 
 # snippet for prompt theme
 # Load OMZ Git library

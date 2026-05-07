@@ -5,3 +5,5 @@
 	rebase = false
 [core]
 	quotepath = false
+[ghq]
+	root = ~/development
