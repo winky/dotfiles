@@ -16,27 +16,52 @@ fi
 
 MODEL="${ANTHROPIC_MODEL:-claude-haiku-4-5-20251001}"
 
-# Compact the input — we send only what the model needs.
-compact=$(printf '%s' "$input" | jq -c '{
-  checks: [.checks[] | {id, title, status, findings}],
-  plugins: (.plugins // [])
-}')
+# Pull the full plugin inventory so the AI can verify replacements
+# actually exist in this repo (preventing suggestions like "use Tree-sitter
+# instead" when no Tree-sitter plugin is configured).
+plugins_json=$("$SCRIPT_DIR/extract-plugins.sh")
+
+# Build a compact payload for the model.
+compact=$(jq -nc \
+  --argjson checks "$(printf '%s' "$input" | jq '[.checks[] | {id, title, status, findings}]')" \
+  --argjson plugins "$plugins_json" \
+  '{checks: $checks, plugins: $plugins}')
 
 prompt=$(cat <<'EOS'
 You are reviewing a personal dotfiles repository for staleness and modernization opportunities.
 
 The user has run automated checks (plugin freshness, shell startup time, syntax, symlinks, etc.).
-You are given the raw findings JSON. Your job is to add value the automated checks cannot:
+You are given (a) the raw findings JSON and (b) the COMPLETE list of plugins configured in this
+repo, grouped by tool (zsh / tmux / vim / neovim).
+
+Your job is to add value the automated checks cannot:
 
 1. Flag outdated configuration patterns (deprecated plugin manager features, old idioms).
 2. Suggest modern alternatives only when materially better (not for novelty).
 3. Identify redundancies (two tools doing the same job).
 4. Highlight security or correctness pitfalls in the configuration approach.
 
-Output a Markdown section starting with `## AI Review (Claude {{MODEL}})`.
-Format: 3 to 5 bullet points, each starting with **[high|medium|low]** severity.
-Be specific. Cite plugin or config names. No generic advice.
-If you cannot find substantive issues, say so honestly in one sentence.
+VERIFICATION RULES (strictly follow):
+
+- Before claiming "X already covers this" or "this is redundant with X", verify X appears in the
+  `plugins` list. If X is NOT in the list, frame the suggestion as "consider adopting X" or
+  "would be better replaced by X if introduced". Do NOT assert coverage that may not exist.
+- Vim and Neovim are SEPARATE ecosystems with separate plugin lists. A built-in or plugin in one
+  does NOT mean the other has it. State which environment (vim or neovim) each suggestion applies
+  to when it matters.
+- Do NOT assume modern stacks (LSP, Tree-sitter, telescope.nvim, etc.) are configured unless
+  plugins indicating their setup appear in the list (e.g. `nvim-treesitter/nvim-treesitter`,
+  `neovim/nvim-lspconfig`).
+- For any "redundant with X" claim, both the stale plugin AND the replacement X must appear in
+  the plugins list. Otherwise downgrade severity and reframe as a possibility.
+
+OUTPUT FORMAT:
+
+- Start with `## AI Review (Claude {{MODEL}})`.
+- 3 to 5 bullet points, each starting with **[high|medium|low]** severity.
+- Be specific. Cite plugin or config names.
+- No generic advice.
+- If no substantive issues, say so honestly in one sentence.
 
 Input JSON follows.
 EOS
@@ -66,7 +91,6 @@ if [[ -z "$response" ]]; then
   exit 0
 fi
 
-# Extract text from the standard response shape.
 text=$(printf '%s' "$response" | jq -r '.content[0].text // empty' 2>/dev/null || true)
 if [[ -z "$text" ]]; then
   err=$(printf '%s' "$response" | jq -r '.error.message // .' 2>/dev/null || printf '%s' "$response")
