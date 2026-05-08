@@ -159,6 +159,43 @@ git pull origin master
 git submodule update --init --recursive
 ```
 
+## 🩺 dotfiles-doctor (健全性チェック)
+
+このリポジトリには `bin/dotfiles-doctor` が同梱されています。シンボリックリンク
+の整合性、シェル/設定の構文、プラグインの活性、起動時間などを点検し、Markdown
+レポートを生成します。任意で Claude API による近代化レビューも追加できます。
+
+### ローカル実行
+
+```bash
+./bin/dotfiles-doctor                  # tmp/doctor-report.md を生成
+./bin/dotfiles-doctor --no-ai          # AI レビューをスキップ
+./bin/dotfiles-doctor --json           # JSON のみ stdout に出力
+./bin/dotfiles-doctor --output PATH    # 出力先を指定
+```
+
+### チェック項目
+
+| ID | 内容 |
+|----|------|
+| 01-symlinks | このリポジトリ向け dead symlink の検出 |
+| 02-shell-syntax | `.zshrc` / `.zsh/*.zsh` の `zsh -n` 構文チェック |
+| 03-shell-startup | `zsh -i -c exit` の起動時間ベンチ (3回中央値) |
+| 04-tmux-syntax | `.tmux.conf` の起動テスト |
+| 05-plugins-status | zinit / lazy.nvim / dein / TPM のプラグインを `gh api` で点検 (archived / 2年放置) |
+| 06-referenced-bins | 必須/任意コマンドの存在確認 |
+| 07-git-config | `config/git/config` の credential helper 実体確認 |
+
+### CI 実行
+
+`.github/workflows/doctor.yml` が毎月 1 日 (UTC 0:00 / JST 9:00) に自動実行され、
+`dotfiles-health` ラベルを持つ単一の Issue を upsert します。Issue が増殖しない
+設計です。
+
+必要な Secret / Variable:
+- `ANTHROPIC_API_KEY` (Secret, 任意): AI レビューを有効にする場合のみ
+- `ANTHROPIC_MODEL` (Variable, 任意): デフォルトは `claude-haiku-4-5-20251001`
+
 ## 📝 注意事項
 
 - このリポジトリは個人用の設定です

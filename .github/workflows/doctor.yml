@@ -1,0 +1,64 @@
+name: Dotfiles Doctor
+
+on:
+  schedule:
+    # 毎月1日 00:00 UTC (9:00 JST)
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001' }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TRACKING_LABEL: dotfiles-health
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tmux zsh jq
+
+      - name: Run dotfiles-doctor
+        run: |
+          ./bin/dotfiles-doctor --output report.md || true
+          cat report.md
+
+      - name: Upsert tracking issue
+        run: |
+          set -euo pipefail
+          REPO="${GITHUB_REPOSITORY}"
+          # Ensure label exists.
+          gh label create "$TRACKING_LABEL" --color BFD4F2 --description "Automated dotfiles health report" 2>/dev/null || true
+
+          # Find an existing open tracking issue.
+          ISSUE_NUMBER=$(gh issue list --repo "$REPO" --state open --label "$TRACKING_LABEL" \
+            --json number --jq '.[0].number // empty')
+
+          BODY_FILE=report.md
+          TITLE="Dotfiles Health Report"
+
+          if [[ -z "$ISSUE_NUMBER" ]]; then
+            echo "Creating new tracking issue"
+            gh issue create --repo "$REPO" --title "$TITLE" --label "$TRACKING_LABEL" --body-file "$BODY_FILE"
+          else
+            echo "Updating issue #$ISSUE_NUMBER"
+            gh issue edit "$ISSUE_NUMBER" --repo "$REPO" --body-file "$BODY_FILE"
+            # Add a comment to mark the run; keeps history visible.
+            gh issue comment "$ISSUE_NUMBER" --repo "$REPO" --body "Updated by run [$GITHUB_RUN_NUMBER](https://github.com/$REPO/actions/runs/$GITHUB_RUN_ID)"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: doctor-report-${{ github.run_number }}
+          path: report.md
+          retention-days: 90

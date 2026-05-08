@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# dotfiles-doctor: run health checks on this dotfiles repo and emit a Markdown report.
+#
+# Usage:
+#   dotfiles-doctor                  # write tmp/doctor-report.md and print summary
+#   dotfiles-doctor --json           # write JSON only (machine-readable) to stdout
+#   dotfiles-doctor --no-ai          # skip AI review even if ANTHROPIC_API_KEY is set
+#   dotfiles-doctor --output PATH    # write Markdown report to PATH
+
+set -euo pipefail
+
+SELF="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SELF/.." && pwd)"
+DOCTOR="$ROOT/scripts/doctor"
+CHECKS="$DOCTOR/checks"
+
+source "$DOCTOR/lib.sh"
+
+mode="markdown"
+no_ai=0
+output=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --json)        mode="json" ;;
+    --no-ai)       no_ai=1 ;;
+    --output)      output="$2"; shift ;;
+    --output=*)    output="${1#*=}" ;;
+    -h|--help)
+      sed -n '2,9p' "$0" | sed 's/^# *//'
+      exit 0
+      ;;
+    *) log_error "Unknown option: $1"; exit 2 ;;
+  esac
+  shift
+done
+
+[[ -n "$output" ]] || output="$ROOT/tmp/doctor-report.md"
+mkdir -p "$(dirname "$output")"
+
+# Run all checks and collect their JSON output.
+results=()
+for check in "$CHECKS"/*.sh; do
+  log_info "running $(basename "$check" .sh)"
+  if json=$("$check"); then
+    results+=("$json")
+  else
+    log_error "$(basename "$check") exited non-zero"
+    results+=("$(jq -nc \
+      --arg id "$(basename "$check" .sh)" \
+      --arg title "$(basename "$check" .sh)" \
+      '{id: $id, title: $title, status: "fail", findings: [{severity: "high", message: "Check script failed to execute"}]}')")
+  fi
+done
+
+# Aggregate.
+checks_json=$(printf '%s\n' "${results[@]}" | jq -sc '.')
+aggregate=$(jq -nc \
+  --arg ts "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+  --arg host "$(hostname)" \
+  --argjson checks "$checks_json" \
+  '{timestamp: $ts, host: $host, checks: $checks}')
+
+if [[ "$mode" == "json" ]]; then
+  printf '%s\n' "$aggregate" | jq '.'
+  exit 0
+fi
+
+# Render Markdown.
+report=$(printf '%s' "$aggregate" | "$DOCTOR/render-report.sh")
+
+# Optional AI review.
+if [[ "$no_ai" -eq 0 && -n "${ANTHROPIC_API_KEY:-}" ]]; then
+  log_info "running AI review"
+  ai_section=$(printf '%s' "$aggregate" | "$DOCTOR/ai-review.sh" || true)
+  if [[ -n "$ai_section" ]]; then
+    report="${report}${ai_section}"
+  fi
+fi
+
+printf '%s\n' "$report" > "$output"
+log_ok "wrote report to $output"
+
+# Summary to stderr for humans.
+ok=$(printf '%s' "$aggregate" | jq '[.checks[] | select(.status == "ok")] | length')
+warn=$(printf '%s' "$aggregate" | jq '[.checks[] | select(.status == "warn")] | length')
+fail=$(printf '%s' "$aggregate" | jq '[.checks[] | select(.status == "fail")] | length')
+
+printf '\n' >&2
+printf '%sSummary:%s ok=%s warn=%s fail=%s\n' "$C_BLUE" "$C_RESET" "$ok" "$warn" "$fail" >&2
+
+# Exit non-zero if any check failed (useful for CI gating, optional).
+[[ "$fail" -eq 0 ]]
