@@ -1,19 +1,6 @@
 # dein.vim - Vim environment plugin management
 # Note: Neovim uses lazy.nvim (see ~/.config/nvim/init.lua)
 
-# インデントに色を付けて見やすくする
-[[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
-hook_add = '''
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_auto_colors=0
-  aug vimindent
-    au!
-    au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-    au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
-  aug END
-'''
-
 # 置換ハイライト
 # Note: Neovim uses built-in inccommand, but Vim needs this plugin
 [[plugins]]
