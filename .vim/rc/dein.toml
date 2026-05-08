@@ -24,12 +24,12 @@ hook_add = '''
   nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 '''
 
-# Commentout shortcut
+# Commentout shortcut (matches Neovim Comment.nvim keybindings)
 [[plugins]]
-repo = 'tyru/caw.vim'
+repo = 'tpope/vim-commentary'
 hook_add = '''
-  nmap <Leader>c <Plug>(caw:i:toggle)
-  vmap <Leader>c <Plug>(caw:i:toggle)
+  nmap <Leader>c gcc
+  vmap <Leader>c gc
 '''
 
 # 行末の半角スペースを可視化

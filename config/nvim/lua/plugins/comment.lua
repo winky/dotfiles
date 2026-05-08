@@ -29,9 +29,6 @@ return {
       },
     })
 
-    -- Map <Leader>c to toggle comment (matching caw.vim behavior)
-    -- In normal mode: toggle current line
-    -- In visual mode: toggle selected lines
     vim.keymap.set("n", "<Leader>c", "gcc", { desc = "Toggle comment", remap = true })
     vim.keymap.set("v", "<Leader>c", "gc", { desc = "Toggle comment", remap = true })
   end,
