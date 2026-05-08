@@ -46,6 +46,11 @@ gh api --method POST "repos/$PARENT_REPO/issues/$PARENT/sub_issues" \
 - すでに別Issueがある内容
 - 1〜2分で本人が判断・対処できる些末事
 
+**ラウンドのクローズ:**
+- 紐付いたサブIssueがすべて closed になったら、親 (`Dotfiles Health Report`) も対応サマリを残してクローズする
+- 次回CI実行時、`--state open` のトラッキングIssueが見つからなければ workflow が新しい親Issueを自動作成する（`.github/workflows/doctor.yml`の挙動）
+- これにより1ラウンド = 1親Issue という形で履歴が保てる
+
 ## Conventions
 
 - Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`)
