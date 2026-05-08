@@ -54,6 +54,10 @@ VERIFICATION RULES (strictly follow):
   `neovim/nvim-lspconfig`).
 - For any "redundant with X" claim, both the stale plugin AND the replacement X must appear in
   the plugins list. Otherwise downgrade severity and reframe as a possibility.
+- When recommending a NEW plugin not currently in the list, you cannot verify its current
+  activity status (your training data may be stale). Append "(verify upstream activity before
+  adopting — recommendation based on training data, repo may be archived/abandoned now)" to
+  any such suggestion. Past failure: recommended `Yggdroot/indentLine` which is archived.
 
 OUTPUT FORMAT:
 
