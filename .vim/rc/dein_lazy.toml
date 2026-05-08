@@ -15,8 +15,3 @@ hook_add = '''
 [[plugins]]
 repo = 'cohama/lexima.vim'
 on_event = 'InsertEnter'
-
-# HTML5文法チェック
-[[plugins]]
-repo = 'hokaccha/vim-html5validator'
-on_ft = ['html','smarty']

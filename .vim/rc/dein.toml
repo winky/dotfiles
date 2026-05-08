@@ -49,10 +49,6 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-# ANSI escape sequences
-[[plugins]]
-repo = 'vim-scripts/AnsiEsc.vim'
-
 # ステータスライン表示
 [[plugins]]
 repo = 'itchyny/lightline.vim'
