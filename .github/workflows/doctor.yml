@@ -40,8 +40,11 @@ jobs:
           gh label create "$TRACKING_LABEL" --color BFD4F2 --description "Automated dotfiles health report" 2>/dev/null || true
 
           # Find an existing open tracking issue.
-          ISSUE_NUMBER=$(gh issue list --repo "$REPO" --state open --label "$TRACKING_LABEL" \
-            --json number --jq '.[0].number // empty')
+          # Note: gh issue list ignores --state when combined with --label in some
+          # versions, so we filter state in jq instead.
+          ISSUE_NUMBER=$(gh issue list --repo "$REPO" --label "$TRACKING_LABEL" \
+            --json number,state \
+            --jq 'map(select(.state == "OPEN")) | .[0].number // empty')
 
           BODY_FILE=report.md
           TITLE="Dotfiles Health Report"
