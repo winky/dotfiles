@@ -1,5 +1,8 @@
 # Keybinds
 
+# fzf history search (Ctrl+R)
+bindkey '^R' fzf-history-selection
+
 # ghq + fzf: jump to a repository (Ctrl+])
 function fzf-src() {
   local selected

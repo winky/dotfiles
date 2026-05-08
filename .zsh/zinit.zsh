@@ -7,7 +7,7 @@ zinit lucid wait'!0' light-mode for \
   'zsh-users/zsh-history-substring-search' \
 
 zinit ice lucid wait'!0' pick'init.sh' \
-  atload'ENHANCD_FILTER=peco:fzf:fzy; export ENHANCD_FILTER;'
+  atload'ENHANCD_FILTER=fzf; export ENHANCD_FILTER;'
 zinit light 'b4b4r07/enhancd'
 
 zinit ice lucid wait'!0' as'program' pick'bin/fzf' \
@@ -16,7 +16,6 @@ zinit ice lucid wait'!0' as'program' pick'bin/fzf' \
 zinit light 'junegunn/fzf'
 
 zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*linux_arm64*' light-mode for \
-  mv'peco*/peco -> peco' 'peco/peco' \
   mv'gh*/bin/gh -> gh' 'cli/cli' \
   mv'ghq*/ghq -> ghq' 'x-motemen/ghq' \
 
