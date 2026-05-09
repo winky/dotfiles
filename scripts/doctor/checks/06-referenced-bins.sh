@@ -9,7 +9,7 @@ ROOT=$(dotfiles_root)
 
 # Curated list of commands the dotfiles depend on. Add to this as needed.
 required=(zsh git)
-optional=(fzf gh ghq tmux nvim vim starship asdf direnv jq)
+optional=(fzf gh ghq tmux nvim vim asdf jq)
 
 findings=""
 add() { findings="${findings:+$findings$'\n'}$1"; }
