@@ -1,16 +1,6 @@
 # dein.vim - Vim environment plugin management
 # Note: Neovim uses lazy.nvim (see ~/.config/nvim/init.lua)
 
-# 置換ハイライト
-# Note: Neovim uses built-in inccommand, but Vim needs this plugin
-[[plugins]]
-repo = 'osyo-manga/vim-over'
-hook_add = '''
-  nnoremap <silent> <Space>o :OverCommandLine<CR>%s//g<Left><Left>
-  vnoremap <silent> <Space>o :OverCommandLine<CR>s//g<Left><Left>
-  nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-'''
-
 # Commentout shortcut (matches Neovim Comment.nvim keybindings)
 [[plugins]]
 repo = 'tpope/vim-commentary'
