@@ -5,10 +5,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Built-in features: trailing whitespace and substitute preview
--- Trailing whitespace highlighting
-vim.o.list = true
-vim.o.listchars = "tab:» ,lead:•,trail:•"
+-- Trailing whitespace highlight (listchars handles the rendering; see .vimrc)
 vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#ff6b6b" })
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",

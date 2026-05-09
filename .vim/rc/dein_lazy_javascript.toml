@@ -9,4 +9,4 @@ hook_post_source = '''
 '''
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'dense-analysis/ale'

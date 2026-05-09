@@ -28,6 +28,8 @@ set wildmenu "コマンドライン補完を拡張モードにする
 set wrap "折り返して表示
 set cursorline "カーソル行の背景変更
 set number "行番号を表示
+set list "不可視文字を可視化
+set listchars=tab:»\ ,trail:•,lead:•
 if has ('nvim')
     set guicursor=i-ci-ve:block
 endif
@@ -36,8 +38,6 @@ endif
 "折りたたみ関連
 "------------------------------------------------------
 set foldenable
-"set foldopen=all "fold内に移動すれば自動で開く
-"set foldclose=all
 set foldlevel=2 "折り畳み具合
 set foldmethod=indent "折畳処理のパターン
 set foldcolumn=6 "折畳を示すカラム幅

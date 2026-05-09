@@ -9,11 +9,6 @@ hook_add = '''
   vmap <Leader>c gc
 '''
 
-# 行末の半角スペースを可視化
-# Note: Can be handled with listchars, but keeping plugin for Vim compatibility
-[[plugins]]
-repo = 'bronson/vim-trailing-whitespace'
-
 # Cross-editor colorscheme (vim/neovim shared, similar palette to nightfox.nvim)
 [[plugins]]
 repo = 'sainnhe/edge'
