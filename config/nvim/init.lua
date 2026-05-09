@@ -41,7 +41,7 @@ require("lazy").setup("plugins", {
     lazy = false,
   },
   install = {
-    colorscheme = { "nightfox" },
+    colorscheme = { "edge" },
   },
   checker = {
     enabled = true,

@@ -24,9 +24,13 @@ hook_add = '''
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
-# molokai カラースキーム
+# Cross-editor colorscheme (vim/neovim shared, similar palette to nightfox.nvim)
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'sainnhe/edge'
+hook_add = '''
+  let g:edge_style = 'aura'
+  let g:edge_better_performance = 1
+'''
 
 # 囲いを簡易化
 [[plugins]]

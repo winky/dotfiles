@@ -10,18 +10,9 @@ if !has('nvim')
 endif
 set nocompatible "viの互換をなくす
 set backspace=indent,eol,start "バックスペースの挙動
-" Load colorscheme if available
-" Neovim: Use nightfox (configured in ~/.config/nvim/init.lua)
-" Vim: Use molokai
-if !has('nvim')
-  if filereadable(expand("~/.vim/colors/molokai.vim"))
-    try
-      colorscheme molokai
-    catch /^Vim\%((\a\+)\)\=:E185/
-      " Colorscheme not found, use default
-    endtry
-  endif
-endif
+" Colorscheme is applied AFTER the plugin manager loads (see end of file).
+" Neovim: edge configured via lazy.nvim plugin spec
+" Vim:    edge configured via dein and the block at the end of this file
 
 "------------------------------------------------------
 "表示設定
@@ -181,4 +172,17 @@ if has('syntax')
         au VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
     aug END
     call ZenkakuSpace()
+endif
+
+"------------------------------------------------------
+" カラースキーム適用 (Vim 側のみ; Neovim は lazy.nvim 側で設定)
+"------------------------------------------------------
+if !has('nvim')
+  if has('termguicolors')
+    set termguicolors
+  endif
+  set background=dark
+  let g:edge_style = 'aura'
+  let g:edge_better_performance = 1
+  silent! colorscheme edge
 endif
