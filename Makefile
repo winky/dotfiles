@@ -33,9 +33,6 @@ clean: ## Remove all dotfiles symlinks from home directory (does not remove this
 install: clean update deploy ## Full installation: clean existing dotfiles, update from remote, deploy symlinks, and reload shell
 	@exec $$SHELL
 
-test: ## Run test suite for dotfiles and scripts (used by CI)
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
-
 help: ## Print usage information and list all available commands
 	@echo ''
 	@echo 'Usage: Make COMMAND for dotfiles'
