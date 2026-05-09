@@ -1,6 +1,6 @@
 # Private dotfiles
 
-[![github](https://github.com/winky/dotfiles/workflows/CI/badge.svg)](https://github.com/winky/dotfiles/workflows/CI/)
+[![Dotfiles Doctor](https://github.com/winky/dotfiles/actions/workflows/doctor.yml/badge.svg)](https://github.com/winky/dotfiles/actions/workflows/doctor.yml)
 
 個人用のdotfilesリポジトリです。開発環境を効率的にセットアップするための設定ファイルを管理しています。
 
@@ -11,7 +11,7 @@
 - **Shell**: zsh, bash
 - **Editor**: Neovim (lazy.nvim), Vim (dein.vim)
 - **Terminal**: tmux
-- **その他**: Git, Karabiner, peco
+- **その他**: Git, Karabiner
 
 ## 🚀 クイックスタート
 
@@ -40,19 +40,18 @@ make install
 ### Shell (zsh)
 
 - **プラグインマネージャー**: zinit
-- **プロンプト**: starship（利用可能な場合）、またはカスタムテーマ `winky.zsh-theme`
+- **プロンプト**: カスタムテーマ `winky.zsh-theme`
 - **ディレクトリナビゲーション**: zoxide（利用可能な場合）
-- **モダンなCLIツール**:
+- **モダンなCLIツール** (インストール時のみ alias 適用):
   - `eza` - `ls`の代替（アイコン、Git統合）
   - `bat` - `cat`の代替（シンタックスハイライト）
   - `ripgrep` (rg) - `grep`の代替（高速検索）
-  - `fd` - `find`の代替（高速ファイル検索）
   - `lazygit` - Git TUI
 
 ### Neovim
 
 - **プラグインマネージャー**: lazy.nvim
-- **カラースキーム**: nightfox
+- **カラースキーム**: sainnhe/edge (Vim と共通)
 - **LSP**: Neovim 0.11+ ネイティブLSP API
   - 対応言語: Lua, Python, TypeScript/JavaScript, Go, PHP
 - **補完**: nvim-cmp + LuaSnip
@@ -68,7 +67,7 @@ make install
 ### Vim
 
 - **プラグインマネージャー**: dein.vim
-- **カラースキーム**: molokai
+- **カラースキーム**: sainnhe/edge (Neovim と共通)
 - **主要プラグイン**:
   - lightline.vim（ステータスライン）
   - NERDTree（ファイルエクスプローラー）
@@ -99,7 +98,6 @@ make install
 │   ├── themes/        # カスタムプロンプトテーマ
 │   └── zinit.zsh      # zinit設定
 ├── .vim/              # Vim設定
-│   ├── colors/        # カラースキーム
 │   └── rc/            # dein.vimプラグイン設定
 ├── .tmux/             # tmux設定
 │   └── plugins/       # TPMプラグイン
@@ -142,8 +140,7 @@ return {
 
 ### プロンプトの変更
 
-- starshipを使用する場合: `starship.toml` を編集
-- カスタムテーマを使用する場合: `.zsh/themes/winky.zsh-theme` を編集
+`.zsh/themes/winky.zsh-theme` を編集
 
 ## 🔄 更新方法
 
