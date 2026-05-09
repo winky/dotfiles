@@ -30,11 +30,8 @@ zinit light 'x-motemen/ghq'
 # Load OMZ Git library
 zinit snippet OMZL::git.zsh
 
-# Load custom theme only if starship is not being used
-if [[ -z "$USE_STARSHIP" ]]; then
-  zinit ice pic"*.zsh-theme"
-  zinit light "$DOTFILES/.zsh/themes"
-fi
+zinit ice pic"*.zsh-theme"
+zinit light "$DOTFILES/.zsh/themes"
 
 zinit ice lucid wait'!0' blockf atpull'zinit creinstall -q .' atload'zicompinit; zicdreplay'
 zinit light 'zsh-users/zsh-completions'

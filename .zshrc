@@ -7,11 +7,6 @@ ZINIT_ZSH=$ZINIT_HOME/bin/zinit.zsh
 # Set XDG cache directory if not set
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 
-# Check if starship is available (for prompt theme)
-if command -v starship >/dev/null 2>&1; then
-  export USE_STARSHIP=1
-fi
-
 #------------------------------------------------------
 # Install and load Plugin
 # ZINIT https://github.com/zdharma-continuum/zinit
@@ -32,15 +27,10 @@ if [[ -f $ZINIT_ZSH ]]; then
 fi
 
 #------------------------------------------------------
-# Prompt theme: starship or custom theme
+# Prompt theme
 #------------------------------------------------------
-if [[ -n "$USE_STARSHIP" ]]; then
-  eval "$(starship init zsh)"
-else
-  # Load custom theme if starship is not available
-  if [[ -f $DOTFILES/.zsh/themes/winky.zsh-theme ]]; then
-    source $DOTFILES/.zsh/themes/winky.zsh-theme
-  fi
+if [[ -f $DOTFILES/.zsh/themes/winky.zsh-theme ]]; then
+  source $DOTFILES/.zsh/themes/winky.zsh-theme
 fi
 
 #------------------------------------------------------
