@@ -128,18 +128,11 @@ if !has('nvim')
       let s:toml_dir = '~/.vim/rc'
 
       " プラグインリストを収めた TOML ファイル
-      let s:toml          = s:toml_dir . '/dein.toml'
-      let s:lazy_toml     = s:toml_dir . '/dein_lazy.toml'
-      let s:syntax_toml   = s:toml_dir . '/dein_lazy_syntax.toml'
-      let s:mkd_toml      = s:toml_dir . '/dein_lazy_markdown.toml'
-      let s:js_toml       = s:toml_dir . '/dein_lazy_javascript.toml'
+      " (Vim は nvim が無い環境向けの最小フォールバック構成。dein.toml のみ)
+      let s:toml = s:toml_dir . '/dein.toml'
 
       " TOML を読み込み、キャッシュしておく
-      call dein#load_toml(s:toml,         {'lazy': 0})
-      call dein#load_toml(s:lazy_toml,    {'lazy': 1})
-      call dein#load_toml(s:syntax_toml,  {'lazy': 1})
-      call dein#load_toml(s:mkd_toml,     {'lazy': 1})
-      call dein#load_toml(s:js_toml,      {'lazy': 1})
+      call dein#load_toml(s:toml, {'lazy': 0})
       " 設定終了
       call dein#end()
       call dein#save_state()

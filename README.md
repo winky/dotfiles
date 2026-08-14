@@ -66,13 +66,14 @@ make install
 
 ### Vim
 
+- **位置付け**: Neovim が無い環境向けの最小フォールバック構成
 - **プラグインマネージャー**: dein.vim
 - **カラースキーム**: sainnhe/edge (Neovim と共通)
 - **主要プラグイン**:
   - lightline.vim（ステータスライン）
-  - NERDTree（ファイルエクスプローラー）
   - vim-fugitive（Git統合）
   - vim-gitgutter（Git差分表示）
+  - vim-surround / vim-commentary（編集系）
 
 ### tmux
 
@@ -131,7 +132,7 @@ return {
 ```
 
 #### Vim
-`.vim/rc/dein.toml` または適切なlazy TOMLファイルに追加します。
+`.vim/rc/dein.toml` に追加します。
 
 ### シェルエイリアスの追加
 
