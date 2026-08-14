@@ -22,11 +22,17 @@ for cmd in "${required[@]}"; do
   fi
 done
 
-for cmd in "${optional[@]}"; do
-  if ! command -v "$cmd" >/dev/null 2>&1; then
-    add "$(finding low "Optional command not installed: $cmd" "Some features may be unavailable.")"
-    [[ "$status" == "ok" ]] && status="warn"
-  fi
-done
+# Optional commands are only meaningful on a real workstation; CI runners
+# are not expected to have them installed, so skip to avoid false warnings.
+if [[ -n "${CI:-}" ]]; then
+  add "$(finding low "Skipped optional command check" "Running in CI; optional tools are not expected on the runner.")"
+else
+  for cmd in "${optional[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      add "$(finding low "Optional command not installed: $cmd" "Some features may be unavailable.")"
+      [[ "$status" == "ok" ]] && status="warn"
+    fi
+  done
+fi
 
 emit_result "06-referenced-bins" "Referenced commands" "$status" "${findings:-[]}"
