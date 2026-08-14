@@ -20,7 +20,7 @@ jobs:
       TRACKING_LABEL: dotfiles-health
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install dependencies
         run: |
@@ -59,7 +59,7 @@ jobs:
             gh issue comment "$ISSUE_NUMBER" --repo "$REPO" --body "Updated by run [$GITHUB_RUN_NUMBER](https://github.com/$REPO/actions/runs/$GITHUB_RUN_ID)"
           fi
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: doctor-report-${{ github.run_number }}
