@@ -7,5 +7,7 @@
 .netrwhist
 tmp/
 .superset/
+.vim/after/
+config/nvim/after/
 !.zinit/bin
 !.tmux/plugins/tpm
