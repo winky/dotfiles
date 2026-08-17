@@ -23,3 +23,5 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 [[ -d /opt/homebrew/bin ]] && export PATH="/opt/homebrew/bin:$PATH"
 [[ -d /usr/local/bin ]] && export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 [[ -d /$HOME/.local/bin ]] && export PATH="$HOME/.local/bin:$PATH"
+# dotfiles 同梱スクリプト (bin/claude-grid など)
+[[ -n ${DOTFILES:-} && -d $DOTFILES/bin ]] && export PATH="$DOTFILES/bin:$PATH"

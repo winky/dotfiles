@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+# claude-grid: 複数の Claude Code セッションを tmux の 1 ウィンドウにタイル配置して監視する。
+#
+# Usage:
+#   claude-grid                # セッション作成 & attach (tmux 内なら switch-client)
+#   claude-grid add [dir]      # dir (省略時カレント) で claude ペインを追加
+#   claude-grid add dir -- ... # "--" 以降を claude への引数として渡す (例: -- --continue)
+#   claude-grid pick           # ghq list -p | fzf でリポジトリを選んでペイン追加
+#   claude-grid ls             # グリッド内ペイン一覧
+#
+# 対象ウィンドウを zoom (prefix z) すれば単独作業、unzoom で監視に戻る。
+
+set -euo pipefail
+
+SESSION="${CLAUDE_GRID_SESSION:-claude}"
+WINDOW="grid"
+
+die() { printf 'claude-grid: %s\n' "$*" >&2; exit 1; }
+
+command -v tmux >/dev/null 2>&1 || die "tmux not found"
+CLAUDE_BIN="$(command -v claude || true)"
+[[ -n "$CLAUDE_BIN" ]] || die "claude not found in PATH"
+
+grid_window_id() {
+  tmux list-windows -t "=$SESSION" -F '#{window_id} #{window_name}' 2>/dev/null \
+    | awk -v w="$WINDOW" '$2 == w {print $1; exit}'
+}
+
+apply_window_style() {
+  local win="$1"
+  tmux set -w -t "$win" pane-border-status top
+  tmux set -w -t "$win" pane-border-format \
+    ' #[bold]#{pane_index}#[default] #{b:pane_current_path}#{?#{@claude_attention}, #[fg=red bold]●#[default],} #[dim]#{=|32|…:pane_title}#[default] '
+}
+
+# claude 終了後もペインの zsh に戻れるよう send-keys で起動する
+launch_claude() {
+  local pane="$1"; shift
+  local cmd="$CLAUDE_BIN"
+  (($#)) && cmd="$cmd $(printf '%q ' "$@")"
+  tmux send-keys -t "$pane" "$cmd" Enter
+}
+
+# セッション/ウィンドウが無ければ dir で作り claude を起動して 0 を返す。既存なら 1。
+ensure_grid() {
+  local dir="$1"; shift
+  local win pane
+  if ! tmux has-session -t "=$SESSION" 2>/dev/null; then
+    pane=$(tmux new-session -d -s "$SESSION" -n "$WINDOW" -c "$dir" -P -F '#{pane_id}')
+    apply_window_style "$(grid_window_id)"
+    launch_claude "$pane" "$@"
+    return 0
+  fi
+  win="$(grid_window_id)"
+  if [[ -z "$win" ]]; then
+    pane=$(tmux new-window -t "=$SESSION" -n "$WINDOW" -c "$dir" -P -F '#{pane_id}')
+    apply_window_style "$(grid_window_id)"
+    launch_claude "$pane" "$@"
+    return 0
+  fi
+  return 1
+}
+
+resolve_dir() {
+  local dir="${1:-$PWD}"
+  [[ -d "$dir" ]] || die "no such directory: $dir"
+  (cd "$dir" && pwd)
+}
+
+cmd_open() {
+  local dir; dir=$(resolve_dir "${1:-}")
+  ensure_grid "$dir" || true
+  if [[ -n "${TMUX:-}" ]]; then
+    tmux switch-client -t "=$SESSION"
+  else
+    exec tmux attach-session -t "=$SESSION"
+  fi
+}
+
+cmd_add() {
+  local args=() extra=()
+  while (($#)); do
+    if [[ "$1" == "--" ]]; then shift; extra=("$@"); break; fi
+    args+=("$1"); shift
+  done
+  local dir; dir=$(resolve_dir "${args[0]:-}")
+  if ! ensure_grid "$dir" ${extra[@]+"${extra[@]}"}; then
+    local win pane
+    win="$(grid_window_id)"
+    pane=$(tmux split-window -t "$win" -c "$dir" -P -F '#{pane_id}')
+    tmux select-layout -t "$win" tiled
+    apply_window_style "$win"
+    launch_claude "$pane" ${extra[@]+"${extra[@]}"}
+  fi
+  if [[ -z "${TMUX:-}" ]]; then
+    echo "added pane in $dir (attach: claude-grid)"
+  fi
+}
+
+cmd_pick() {
+  command -v ghq >/dev/null 2>&1 || die "ghq not found (pick requires ghq + fzf)"
+  command -v fzf >/dev/null 2>&1 || die "fzf not found (pick requires ghq + fzf)"
+  local dir
+  dir=$(ghq list -p | fzf --prompt='claude-grid> ') || exit 0
+  cmd_add "$dir"
+}
+
+cmd_ls() {
+  local win; win="$(grid_window_id)"
+  [[ -n "$win" ]] || die "no grid window (run: claude-grid)"
+  tmux list-panes -t "$win" \
+    -F '#{pane_index}  #{pane_id}  #{b:pane_current_path}  [#{pane_current_command}]  #{pane_title}'
+}
+
+case "${1:-open}" in
+  open)      shift || true; cmd_open "$@" ;;
+  add)       shift; cmd_add "$@" ;;
+  pick)      shift; cmd_pick ;;
+  ls)        shift; cmd_ls ;;
+  -h|--help) sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//' ;;
+  *)         die "unknown command: $1 (see --help)" ;;
+esac
