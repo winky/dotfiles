@@ -94,7 +94,7 @@ claude-grid ls                # グリッド内ペイン一覧
 
 方向 (`-h` / `-v`) を指定すると tiled 再配置をスキップし、アクティブペインを分割して手動レイアウトを維持する。以降に方向なしの `add` を実行すると tiled 自動配置に戻る点に注意。
 
-エイリアス: `cg` (claude-grid) / `cga` (add) / `cgp` (pick) / `cgl` (ls)
+エイリアス: `cg` (claude-grid) / `cga` (add) / `cgah`・`cgav` (add -h / -v) / `cgp` (pick) / `cgph`・`cgpv` (pick -h / -v) / `cgl` (ls)
 
 - 全体を眺めて監視し、作業するペインは `prefix z` (zoom) で全画面化、unzoom で監視に戻る
 - claude-config 側の hooks と連携し、入力/許可待ちのペインは赤 (枠に ●)、応答完了は緑背景でハイライトされる
