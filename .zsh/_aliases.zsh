@@ -32,6 +32,12 @@ alias cl='clear'
 alias tmx='tmux'
 alias tmxa='tmux attach-session -t'
 
+# claude-grid (Claude Code tmux dashboard)
+alias cg='claude-grid'
+alias cga='claude-grid add'
+alias cgp='claude-grid pick'
+alias cgl='claude-grid ls'
+
 alias history='history -E 1'
 alias his='history'
 
