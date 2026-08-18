@@ -80,6 +80,25 @@ make install
 - **プラグインマネージャー**: TPM (Tmux Plugin Manager)
 - **設定**: カスタムキーバインド、ペイン分割、セッション管理
 
+### claude-grid
+
+複数の Claude Code セッションを tmux の 1 ウィンドウにタイル配置して監視するスクリプト (`bin/claude-grid`)。
+
+```bash
+claude-grid                   # セッション作成 & attach
+claude-grid add [-h|-v] [dir] # dir (省略時カレント) で claude ペインを追加
+                              #   -h: 右に分割 / -v: 下に分割 / 省略時: tiled 自動配置
+claude-grid pick [-h|-v]      # ghq list -p | fzf でリポジトリを選んでペイン追加
+claude-grid ls                # グリッド内ペイン一覧
+```
+
+方向 (`-h` / `-v`) を指定すると tiled 再配置をスキップし、アクティブペインを分割して手動レイアウトを維持する。以降に方向なしの `add` を実行すると tiled 自動配置に戻る点に注意。
+
+エイリアス: `cg` (claude-grid) / `cga` (add) / `cgah`・`cgav` (add -h / -v) / `cgp` (pick) / `cgph`・`cgpv` (pick -h / -v) / `cgl` (ls)
+
+- 全体を眺めて監視し、作業するペインは `prefix z` (zoom) で全画面化、unzoom で監視に戻る
+- claude-config 側の hooks と連携し、入力/許可待ちのペインは赤 (枠に ●)、応答完了は緑背景でハイライトされる
+
 ### Git
 
 - **設定**: `config/git/config`

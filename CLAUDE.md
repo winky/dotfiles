@@ -2,6 +2,8 @@
 
 個人用 dotfiles リポジトリ。zsh / Neovim / Vim / tmux / git 等の設定を管理する。
 
+`bin/claude-grid`: 複数の Claude Code セッションを tmux の 1 ウィンドウにタイル配置して監視するスクリプト。詳細は README の "claude-grid" 節を参照。
+
 ## 健全性チェック (`bin/dotfiles-doctor`)
 
 `scripts/doctor/` のチェック群と `.github/workflows/doctor.yml` で月次健全性レポートを Issue として upsert する仕組み。詳細は README の "🩺 dotfiles-doctor" 節を参照。
