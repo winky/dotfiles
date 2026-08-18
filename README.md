@@ -97,7 +97,7 @@ claude-grid ls                # グリッド内ペイン一覧
 エイリアス: `cg` (claude-grid) / `cga` (add) / `cgah`・`cgav` (add -h / -v) / `cgp` (pick) / `cgph`・`cgpv` (pick -h / -v) / `cgl` (ls)
 
 - 全体を眺めて監視し、作業するペインは `prefix z` (zoom) で全画面化、unzoom で監視に戻る
-- claude-config 側の hooks と連携し、入力/許可待ちのペインは赤 (枠に ●)、応答完了は緑背景でハイライトされる
+- claude-config 側の hooks と連携し、ペイン枠にセッション状態が表示される: 青 `▶` = 実行中 / 赤 `●` + 赤背景 = 入力・許可待ち / 緑 `✔` + 緑背景 = 応答完了
 
 ### Git
 

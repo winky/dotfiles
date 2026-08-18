@@ -27,11 +27,12 @@ grid_window_id() {
     | awk -v w="$WINDOW" '$2 == w {print $1; exit}'
 }
 
+# @claude_status は claude-config 側の hooks が設定する (working / attn / done)
 apply_window_style() {
   local win="$1"
   tmux set -w -t "$win" pane-border-status top
   tmux set -w -t "$win" pane-border-format \
-    ' #[bold]#{pane_index}#[default] #{b:pane_current_path}#{?#{@claude_attention}, #[fg=red bold]●#[default],} #[dim]#{=|32|…:pane_title}#[default] '
+    ' #[bold]#{pane_index}#[default] #{b:pane_current_path}#{?#{==:#{@claude_status},attn}, #[fg=red bold]●#[default],#{?#{==:#{@claude_status},done}, #[fg=green bold]✔#[default],#{?#{==:#{@claude_status},working}, #[fg=blue bold]▶#[default],}}} #[dim]#{=|32|…:pane_title}#[default] '
 }
 
 # claude 終了後もペインの zsh に戻れるよう send-keys で起動する
