@@ -1,15 +1,20 @@
 [user]
 	name = winky
 	email = y.kohada@gmail.com
+	signingkey = ~/.ssh/id_ed25519.pub
 [pull]
 	rebase = false
 [core]
 	quotepath = false
 [ghq]
-	root = ~/development
+	root = ~/src
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
 	helper = !gh auth git-credential
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
