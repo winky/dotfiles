@@ -6,7 +6,7 @@
 [core]
 	quotepath = false
 [ghq]
-	root = ~/development
+	root = ~/src
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
