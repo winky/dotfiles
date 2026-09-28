@@ -15,16 +15,34 @@ zinit ice lucid wait'!0' as'program' pick'bin/fzf' \
   atpull'%atclone' multisrc'shell/{key-bindings,completion}.zsh'
 zinit light 'junegunn/fzf'
 
-zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*linux_arm64*' light-mode for \
-  mv'gh*/bin/gh -> gh' 'cli/cli' \
-  mv'ghq*/ghq -> ghq' 'x-motemen/ghq' \
+# Release binaries, fetched only when the tool is not already on PATH. On macOS these
+# come from the Brewfile in winky/mac-provisioning, so these blocks are skipped; on a
+# Linux box, or a Mac with the dotfiles but not the Brewfile, they install it.
+#
+# bpick is per tool: the projects do not agree on how to name release assets.
+#   ghq   ghq_darwin_arm64.zip        ghq_linux_amd64.zip
+#   gh    gh_x.y.z_macOS_arm64.zip    gh_x.y.z_linux_amd64.tar.gz
+# The Linux patterns are taken from the projects' releases and are untested here.
+case "$(uname -s)-$(uname -m)" in
+  Darwin-arm64)  _ghq_asset='*darwin_arm64*' ; _gh_asset='*macOS_arm64*' ;;
+  Darwin-x86_64) _ghq_asset='*darwin_amd64*' ; _gh_asset='*macOS_amd64*' ;;
+  Linux-aarch64) _ghq_asset='*linux_arm64*'  ; _gh_asset='*linux_arm64*' ;;
+  Linux-x86_64)  _ghq_asset='*linux_amd64*'  ; _gh_asset='*linux_amd64*' ;;
+esac
+
+if (( ! $+commands[ghq] )); then
+  zinit ice lucid wait'!0' from'gh-r' as'program' bpick"$_ghq_asset" mv'ghq*/ghq -> ghq'
+  zinit light 'x-motemen/ghq'
+fi
+
+if (( ! $+commands[gh] )); then
+  zinit ice lucid wait'!0' from'gh-r' as'program' bpick"$_gh_asset" mv'gh*/bin/gh -> gh'
+  zinit light 'cli/cli'
+fi
 
 zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin-arm64*' \
   atload'PATH=$HOME/.asdf/shims:$PATH;'
 zinit light 'asdf-vm/asdf'
-
-zinit ice lucid wait'!0' from'gh-r' as'program' bpick'*darwin_arm64*' mv'ghq*/ghq -> ghq'
-zinit light 'x-motemen/ghq'
 
 # snippet for prompt theme
 # Load OMZ Git library
