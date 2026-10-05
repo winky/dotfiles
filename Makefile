@@ -20,6 +20,16 @@ update: ## Update dotfiles from remote repository and initialize/update git subm
 	git pull origin master
 	git submodule update --init --recursive
 
+# Overridable so that a caller without asdf on PATH (an ansible role, a launchd job) can
+# pass the absolute path.
+ASDF ?= asdf
+
+runtimes: ## Install the asdf plugins and versions pinned in .tool-versions (Node for npx, etc.)
+	@awk '!/^#/ && NF { print $$1 }' $(DOTPATH)/.tool-versions | while read -r name; do \
+		$(ASDF) plugin list 2>/dev/null | grep -qx "$$name" || $(ASDF) plugin add "$$name" || exit 1; \
+	done
+	cd $(DOTPATH) && $(ASDF) install
+
 homeConfig: ## Create symlinks for XDG Base Directory configs (nvim, git, karabiner)
 	mkdir -p $(HOME)/.config/karabiner
 	ln -sfnv $(abspath config/nvim) $(HOME)/.config/nvim

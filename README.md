@@ -35,6 +35,12 @@ make install
    make homeConfig
    ```
 
+3. **言語ランタイムのインストール（asdf）**
+   ```bash
+   make runtimes
+   ```
+   `.tool-versions`（`make deploy` で `~/.tool-versions` にリンクされる）に固定したプラグインとバージョンを入れる。何度実行しても、入っているものは飛ばす。Node.js は Claude Code の stdio MCP サーバーを `npx` で起動するために要る。シェルの起動時には実行しない（ダウンロードに時間がかかるため）。asdf が PATH に無い呼び出し元からは `make runtimes ASDF=/path/to/asdf` で絶対パスを渡す。
+
 ## 🛠️ 主要な機能
 
 ### Shell (zsh)
