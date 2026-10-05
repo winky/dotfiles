@@ -20,11 +20,30 @@ update: ## Update dotfiles from remote repository and initialize/update git subm
 	git pull origin master
 	git submodule update --init --recursive
 
-# Overridable so that a caller without asdf on PATH (an ansible role, a launchd job) can
-# pass the absolute path.
-ASDF ?= asdf
+# Pinned CLI tools, installed into BINDIR (on PATH from .zsh/_env.zsh) rather than by zinit
+# at shell start: asdf's shims exec `asdf` from PATH on every node/npx call, including ones
+# that never pass through zsh (an MCP server, make, launchd), so it has to sit at a fixed
+# path before anything runs. The same targets work on Linux.
+#
+# To add a tool: append it to TOOLS and give it <name>_version and <name>_url -- projects do
+# not name their release assets alike. The tarball has to hold the binary at its top level.
+BINDIR ?= $(HOME)/.local/bin
+OS     := $(shell uname -s | tr '[:upper:]' '[:lower:]')
+ARCH   := $(shell uname -m | sed -e 's/^x86_64$$/amd64/' -e 's/^aarch64$$/arm64/')
 
-runtimes: ## Install the asdf plugins and versions pinned in .tool-versions (Node for npx, etc.)
+TOOLS := asdf
+
+asdf_version := 0.20.2
+asdf_url     := https://github.com/asdf-vm/asdf/releases/download/v$(asdf_version)/asdf-v$(asdf_version)-$(OS)-$(ARCH).tar.gz
+
+tools: ## Install the pinned CLI tools (asdf) into ~/.local/bin
+	@$(foreach t,$(TOOLS),$(DOTPATH)/scripts/install-tool.sh $(t) $($(t)_version) $($(t)_url) $(BINDIR) &&) true
+
+# The absolute path, so that this works from a caller whose PATH lacks BINDIR (an ansible
+# role, a launchd job).
+ASDF ?= $(BINDIR)/asdf
+
+runtimes: tools ## Install the asdf plugins and versions pinned in .tool-versions (Node for npx, etc.)
 	@awk '!/^#/ && NF { print $$1 }' $(DOTPATH)/.tool-versions | while read -r name; do \
 		$(ASDF) plugin list 2>/dev/null | grep -qx "$$name" || $(ASDF) plugin add "$$name" || exit 1; \
 	done
