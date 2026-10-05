@@ -35,11 +35,20 @@ make install
    make homeConfig
    ```
 
-3. **言語ランタイムのインストール（asdf）**
+3. **CLI ツールと言語ランタイムのインストール**
    ```bash
-   make runtimes
+   make runtimes   # make tools も先に走る
    ```
-   `.tool-versions`（`make deploy` で `~/.tool-versions` にリンクされる）に固定したプラグインとバージョンを入れる。何度実行しても、入っているものは飛ばす。Node.js は Claude Code の stdio MCP サーバーを `npx` で起動するために要る。シェルの起動時には実行しない（ダウンロードに時間がかかるため）。asdf が PATH に無い呼び出し元からは `make runtimes ASDF=/path/to/asdf` で絶対パスを渡す。
+   | ターゲット | 入れるもの | 指定の場所 |
+   |---|---|---|
+   | `make tools` | 固定バージョンの CLI ツール（今は asdf）を `~/.local/bin` に | `Makefile` の `TOOLS` と `<name>_version` / `<name>_url` |
+   | `make runtimes` | asdf のプラグインとバージョン（Node.js など） | `.tool-versions`（`make deploy` で `~/.tool-versions` にリンク） |
+
+   どちらも何度実行してもよく、入っているものは飛ばす。macOS でも Linux でも同じ。シェルの起動時には実行しない（ダウンロードに時間がかかるため）。
+
+   - **asdf を `~/.local/bin` に置く理由**：shims は `node` や `npx` を呼ぶたびに PATH の `asdf` を実行する。Claude Code が起動する MCP サーバーや make のように zsh を通らない場面でも見つかるよう、固定のパスに先に置く。Homebrew と違ってバージョンも固定できる
+   - **ツールを足すとき**：`TOOLS` に名前を足し、`<name>_version` と `<name>_url` を書く。tar.gz の直下にバイナリがある配布物に対応する。`<url>.md5` があれば照合する
+   - asdf が PATH に無い呼び出し元からは `make runtimes ASDF=/path/to/asdf` で絶対パスを渡せる（既定は `~/.local/bin/asdf`）
 
 ## 🛠️ 主要な機能
 
